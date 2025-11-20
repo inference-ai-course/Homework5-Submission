@@ -1,0 +1,208 @@
+Neighborhood Stability in Double/Debiased Machine Learning with Dependent Data††thanks: We thank Harold Chiang for helpful discussions at an early stage of this project.
+\vskip-12.0pt
+Abstract. This paper studies double/debiased machine learning (DML) methods applied to weakly dependent data. We allow observations to be situated in a general metric space that accommodates spatial and network data. Existing work implements cross-fitting by excluding from the training fold observations sufficiently close to the evaluation fold. We find in simulations that this can result in exceedingly small training fold sizes, particularly with network data. We therefore seek to establish the validity of DML without cross-fitting, building on recent work by chen2022debiased. They study i.i.d. data and require the machine learner to satisfy a natural stability condition requiring insensitivity to data perturbations that resample a single observation. We extend these results to dependent data by strengthening stability to “neighborhood stability,” which requires insensitivity to resampling observations in any slowly growing neighborhood. We show that existing results on the stability of various machine learners can be adapted to verify neighborhood stability.
+JEL Codes: C14, C31, C55
+Keywords: machine learning, causal inference, dependent data, stochastic equicontinuity
+1 Introduction
+Double/debiased machine learning (DML) methods enable -consistent estimation of low-dimensional parameters, such as average treatment effects, using modern machine learning methods to approximate complex nuisance parameters. Large-sample theory for DML is mostly limited to i.i.d. data, but there is recent interest in applications to dependent data. brown2024inference studies DML trained on time series data. gilbert2024causal employ DML to control for spatial confounding. emmenegger2025treatment, leung2025graph, and wang2024graph apply DML to network data.
+A key theoretical challenge is verifying the high-level condition
+| (1) |
+where is the low-dimensional parameter of interest, is the empirical moment, the population moment, the nuisance parameter, and the machine learning estimate of . The goal of this paper is to provide lower-level conditions for (1), without cross-fitting, when the data is a -mixing process. We allow observations to be situated in a generic metric space that can accommodate temporal, spatial, and network data.
+There are three main approaches to verifying (1). First, classical semiparametric estimation theory takes the approach of verifying stochastic equicontinuity, which implies (1) (e.g. andrews1994asymptotics). This condition replaces on the left-hand side with a deterministic function and takes the supremum over all in the nuisance space .111Several papers verify stochastic equicontinuity for neural networks without cross-fitting. See farrell2021deep for multilayer perceptrons and i.i.d. data, wang2024graph for graph neural networks and clustered network data, and brown2024inference for multilayer perceptrons and time series data. As discussed in chernozhukov2018double, this requires restrictions on the complexity of that can be too strong for modern machine learning applications. chen2022debiased note that these restrictions can be conservative since they only concern properties of rather than the machine learner .
+Second, we can employ cross-fitting, which essentially entails training on a random subsample of the data (training fold) and evaluating on the remaining subsample (evaluation fold). When the data is i.i.d., this ensures and are independent, making (1) straightforward to verify. With dependent data, however, it is an open question how cross-fitting should be modified in general to establish (1).
+emmenegger2025treatment and gilbert2024causal consider settings with local dependence where observations are independent when separated by some minimum distance in space or a network. They naturally propose to cross-fit by excluding from the training fold observations that are sufficiently far from the evaluation fold. This modification, however, can substantially reduce the sample size of the training fold in practice, particularly with network data since the number of units at distance can grow rapidly with . In the simulation study in section 5, the training fold size can be less than ten for reasonable parameterizations of the network formation model.
+We therefore opt to avoid cross-fitting and follow a third and more recent approach due to chen2022debiased that builds on chernozhukov2024adversarial. They establish (1) using a natural “stability” condition on the machine learner , rather than conditions on . Stability essentially requires to be insensitive to perturbations of the training data that replace any observation with an independent copy. It has been commonly employed in the statistical learning literature (e.g. austern2020asymptotics; bayle2020cross; bousquet2002stability; celisse2016stability; elisseeff2003leave) and is advantageous due to its intuitive appeal and relative ease of verification for certain machine learners.
+We show that the analysis of chen2022debiased can be extended to dependent data. A key piece of the argument is strengthening stability to “neighborhood” stability. This requires insensitivity to perturbations that replace the observations in a slowly growing neighborhood of any given observation with an independent copy. Resampling neighborhoods is somewhat analogous to modifications of the bootstrap and subsampling for dependent data that resample blocks of contiguous observations. Our conditions intuitively connect the degree of dependence in the data to the strength of the restriction on the machine learner. Specifically, when the dependence between observations decays faster with distance, the neighborhood stability condition is weaker in that the machine learner needs only to be invariant to resampling smaller neighborhoods of observations.
+Stability has been verified for a variety of machine learners, including decision trees (arsov2019stability), regularized M-estimators (bousquet2002stability), M-estimators trained via stochastic gradient descent (hardt2016train), and bagged learners (chen2022debiased). We show that several of these results can be adapted to verify neighborhood stability. The sufficient conditions on the machine learner are satisfied when dependence between observations at distance is small relative to the sizes of -neighborhoods. This is a familiar theme for central limit theorems (CLTs) for dependent data (e.g. jenish2009central; kojevnikov2021limit). When -balls in Euclidean space contain more observations, a given observation is proximate to many others, so a spatial CLT requires dependence to decay more rapidly with distance to compensate.
+The paper is organized as follows. The next section defines the model and estimator. Section 3 states our assumptions and the main result. We provide primitive sufficient conditions for neighborhood stability in section 4. Section 5 presents results from a simulation study of the emmenegger2025treatment network interference model. Finally, section 6 concludes. All proofs are relegated to the appendix.
+2 Setup
+Let be the set of observations and be a semi-metric, so that represents the distance between . For example, observations can be located in Euclidean space with denoting the Euclidean distance between the locations of and . Alternatively, observations may be connected by a social network with denoting the shortest path distance between and . Abusing notation, for , let . For , let denote the -neighborhood of observation .
+The data consists of the triangular array where for all . Let be a set of functions . We consider the moment model
+studied, for example, by chen2022debiased and chernozhukov2018double. Here is the parameter of interest, a nuisance function, , and . We suppose there exist “true values” and such that
+Example 1 (Average Treatment Effect).
+Let be a finite set of possible treatment values and denote the potential outcome of under the counterfactual treatment assignment . The estimand of interest is the average treatment effect for some . An observation consists of where is the treatment assignment, the outcome, and the vector of covariates. A popular doubly robust moment function corresponds to setting and
+where is the value of the covariates under (chernozhukov2018double, eq. (5.3)). Here , assuming identical distributions across .
+Example 2 (Partially Linear IV).
+Specialize the setup of the previous example to the partially linear outcome model for some unknown function . An observation consists of where is the instrument. The Robinson-style moment function corresponds to setting
+(chernozhukov2018double, eq. (4.8)). Here , assuming identical distributions across .
+Let denote the machine learner, an estimate of trained on . Formally, is a mapping from to , but we suppress the dependence of on the training set and simply treat as an element of , writing . Let be the two-step method of moments estimator that satisfies
+Our objective is to provide lower-level conditions for the following version of (1), which we will refer to as “SE.” For any , denote by the -th component of . For the case of , which is vector- rather than matrix-valued, we define whenever . Let . SE corresponds to
+| (2) |
+For i.i.d. data, Theorem 1 of chen2022debiased or Theorem 3.1 of chernozhukov2018double demonstrate that is approximately normal under SE ((A.13) of the latter reference is analogous to SE). These results can be extended to dependent data given an appropriate CLT (e.g. brown2024inference; gilbert2024causal; leung2025graph), so our focus is solely on verifying SE.
+3 Main Result
+Let denote the Euclidean norm, and for any function , let .
+Assumption 1 (Regularity).
+(a) The ranges of are bounded. (b) There exist constants such that for all , , , , and .
+Example 3 (Average Treatment Effect).
+For the moment function in Example 1, Assumption 1(a) holds if outcomes have uniformly bounded support, the propensity score is bounded away from 0 and 1 for all , and the machine learner lies in a bounded set and the second component (the estimated propensity score) lies in strict subset of . The latter requirement is commonly employed in the DML literature (e.g. chernozhukov2018double; farrell2015robust; farrell2021deep). Assumption 1(b) holds for under the same conditions.
+Example 4 (Partially Linear IV).
+For the moment function in Example 2, Assumption 1(a) holds if outcomes and instruments have uniformly bounded support and the machine learner lies in a bounded set. Assumption 1(b) holds for under the same conditions.
+Let denote an independent copy of and be the machine learner trained on rather than . The latter is a perturbed version of the data that replaces with an independent copy. Let denote another copy of independent of both and . chen2022debiased impose the following stability condition on the moments and (see their Lemma 2):
+| (3) |
+When the machine learner is trained on i.i.d. data using cross-fitting, and are independent, and SE is straightforward to verify. Stability essentially weakens full independence to requiring that has a negligible influence on .
+To adapt (3) to dependent data, we replace a set of observations in a slowly growing neighborhood of with an independent copy. Formally, let be a sequence of neighborhood radii. Construct from a new dataset by replacing with , and let be the machine learner trained on this data, leaving its dependence on implicit for economy of notation. For the case we abbreviate .
+Assumption 2 (Neighborhood Stability).
+There exists a sequence of neighborhood radii such that for all and ,
+This strengthens (3) to demand invariance of to resampling larger blocks of observations. The faster diverges, the stronger the requirement. How fast we require to diverge will depend on the degree of dependence in , as we will see shortly. We verify Assumption 2 for various machine learners in section 4.
+Let be the average -neighborhood size.
+Assumption 3 (Learner Consistency).
+For in Assumption 1 and in Assumption 2, .
+This requires the machine learner to converge at a sufficiently fast rate. For the case of , with standard machine learners and weakly dependent data, we expect
+| (4) |
+which corresponds to the usual rate of convergence (e.g. chernozhukov2018double, Assumption 3.2).222Note that (4) contains rather than . The analogous statement for should be easier to verify since the data on which it is trained exhibits a greater degree of independence relative to . Then in order for Assumption 3 to not be unduly restrictive, we require
+| (5) |
+which is a restriction on the metric space and . Choosing would satisfy (5) for most spaces of interest, but our final assumption below may require to diverge. As we will discuss in the examples below, this together with (5) amounts to requiring sufficiently fast decay of a certain measure of dependence.
+For any -fields , define the -mixing coefficient
+where the supremum is taken over all and partitions and of the sample space such that and . For any , let be the -field generated by . Define
+This measures the dependence between one observation and sets of observations at least distance away. We require sufficiently fast decay with respect to in the following sense.
+Assumption 4 (Weak Dependence).
+For in Assumption 2, .
+Example 5 (Dependence and Stability).
+In the commonly considered case of exponential mixing where for some , Assumption 4 is satisfied if for . This mildly strengthens standard stability conditions to resample a logarithmic ball around observations. In the case of stronger dependence with polynomial mixing where for some , the stability requirement is more demanding. Now Assumption 4 is satisfied if for some . Finally, in the case of -dependence, called local dependence in the network setting (chen2004normal), units are independent after distance , so for all , and we can take . Then neighborhood stability only resamples within an -ball of each observation. Local dependence is a common dependence structure in settings with network interference, as discussed in section 5.
+Example 6 (Network Data).
+Let measure shortest path distance. As discussed in Appendix A.1 of leung2022causal, some network formation models can feature exponential neighborhood growth where for some . We thus consider the case of exponential mixing with for (Example 5). For this to satisfy (5), we require . Given , this implies , which says that dependence decays sufficiently quickly relative to neighborhood growth rates. Intuitively if neighborhoods grow quickly in size, then there are many observations proximate to a given ego, so weak dependence requires to decay faster in . As discussed in section 3.3 of leung2022causal, the kojevnikov2021limit CLT for network dependence requires a similar condition.
+Example 7 (Spatial Data).
+Suppose observations are located in and minimally separated in space. Then (jenish2009central, Lemma A.1), and we can consider the case of polynomial mixing with for some (Example 5). To satisfy (5), we require . Given , this implies , which, as in the previous example, requires dependence to decay sufficiently quickly relative to neighborhood growth rates. The jenish2009central CLT for spatial dependence requires an analogous condition in Assumption 3(b), which in our notation holds if .
+Remark 1.
+Our definition of is similar to the coefficient often used in the literature (e.g. (1.3) of bradley1993some and Assumption 4(c) of jenish2009central). The latter instead takes the supremum over sets of arbitrarily large size. kurisu2024gaussian work with a similar coefficient, except they restrict to be a cube in . In their “increasing domain” case, can grow at rate , like in our definition.
+We now state the main result.
+To prove the theorem, we adapt the proof of the analogous i.i.d. result, Lemma 2 of chen2022debiased. We make use of a powerful -mixing coupling lemma due to berbee1979random (Lemma 1), which allows us to reduce certain expressions to the independent case at the cost of an approximation error involving .
+4 Neighborhood Stability
+This section shows that existing results on the stability of machine learners can be adapted to verify neighborhood stability. We first note that Assumption 2 is a restriction on both the moment function and machine learner. The next proposition shows that, under smoothness conditions on the moment functions, specifically a strengthened version of Assumption 1(b), Assumption 2 is a consequence of a more primitive neighborhood stability condition imposed directly on the machine learner.
+This is analogous to Corollary 4 of chen2022debiased, and the proof is immediate. The remainder of this section provides primitive sufficient conditions for (6).
+4.1 Regularized M-Estimators
+Suppose is a reproducing kernel Hilbert space with kernel and norm (berlinet2011reproducing). Let
+where is the loss function and the penalty parameter. This setup includes bounded SVM regression, soft margin SVM classification, and ridge regression.
+Suppose all share a common codomain . The following result is a simple application of Theorem 22 of bousquet2002stability.
+Proposition 2.
+Suppose has bounded range, is convex in its first argument, and is Lipschitz in its first argument in that there exists such that
+Then there exists such that for all and ,
+The result implies (6) when
+4.2 Stochastic Gradient Descent
+Suppose the machine learner is parameterized by so that , and the estimated learner is . To obtain , we choose an objective and seek to solve
+To compute the solution, we consider the use of stochastic gradient descent (SGD) where we initialize and then apply the updating rule
+sequentially for all . Here is the step size and is the derivative of with respect to its first argument. The estimator is .
+hardt2016train and kissel2023black assume satisifes the following smoothness and convexity conditions.
+Assumption 5 (Loss Regularity).
+-
+(a)
+(-strong convexity) There exists such that for all and ,
+-
+(b)
+(Lipschitz continuity) There exist such that for all and ,
+Define such that . The following result is a simple application of Proposition 5.1 of kissel2023black.
+Proposition 3.
+Suppose the learning rate satisfies for some such that . Under Assumption 5, for all and ,
+| (7) |
+Suppose is nondegenerate. Then the right-hand side of (7) is if
+Since the left-hand side is typically non-degenerate, the learning rate must exceed 0.5. With stronger dependence ( diverges faster) or larger neighborhood sizes ( grows faster with ), the condition requires a faster learning rate . In the case of close to one, the requirement is similar to, though stronger than, (5).
+Neighborhood stability (6) follows under appropriate smoothness conditions on , as illustrated in the next example.
+Example 8 (Ridge Regression).
+The ridge objective corresponds to
+for . Let denote the Euclidean ball with radius centered at the origin. Suppose and for some constants . Then by Example 3 of kissel2023black, Proposition 3 applies with , , and , in which case
+4.3 Bagged Learners
+We lastly consider machine learners that average the predictions of “base” learners trained on resampled data, for example random forests. Following the setup of chen2022debiased, we draw observations from , either with or without replacement, independently times to obtain , which we will to refer to as “subsamples.” Let be a base machine learner trained on . The bagged learner is
+Let be defined by replacing each element of in with the corresponding element of . The following result is a simple extension of Theorem 5 of chen2022debiased.
+Proposition 4.
+Let . Neighborhood stability (6) holds for some under the following conditions for satisfying .
+-
+(a)
+(Parameters) and .
+-
+(b)
+(Moments) .
+The second part of the parameters condition holds with a sufficiently large number of subsamples . The first part restricts the subsample size in a manner that depends on how fast dependence decays relative to neighborhood growth rates. The condition allows to grow polynomially with under the following strengthened version of (5):
+| (8) |
+5 Simulation Study
+We replicate the design used in emmenegger2025treatment, which features a potential outcomes model with network interference. We find that computing their estimator without cross-fitting improves the bias and standard deviation. We also find that increasing the density of the network used in their design can result in extremely small training fold sizes when cross-fitting.
+In this design, observations are units connected through a network which is considered non-random or conditioned upon. Then is shortest path distance, and is the set of units is the set of units no more than path distance from . For each unit we observe a scalar outcome , binary treatment , covariate , and network feature . Outcomes are given by
+where . The network features are functions of treatments and covariates of units connected to , generating what the authors refer to as “-spillovers.” Treatments are unconfounded in that , and the estimand of interest is the average treatment effect
+We replicate the data-generating process in section 3.1 of emmenegger2025treatment that uses an Erdős-Rényi network. See Appendix A for specifics of the model. The network formation model draws links between pairs in an i.i.d. fashion with linking probability with . This means is the limiting expected degree (number of connections involving a given unit), which measures network density.
+Due to the network features, the outcomes of units that share a common network neighbor are correlated since both depend upon the common neighbor’s treatment. As discussed in Example 5, this induces local dependence, which satisfies -mixing. We can take to satisfy Assumption 4 since units are independent if they are at least path distance 3 apart and therefore lack a common neighbor.
+As in emmenegger2025treatment we estimate using the doubly robust estimator in Example 1 using random forests to approximate the propensity score and outcome regressions. We replicate the parameters of the learner specified in their section 3.1, which uses standard bootstrapped trees; see Appendix A for details. We also compare with subsampled trees satisfying the setup of subsection 4.3. Since , we treat in (8) as fixed and take the subsample size to be to satisfy assumption (a) of Proposition 4 where is the size of the training set.
+We report results with and without cross-fitting. In the latter case, the random forests are trained on the entire dataset with the outcome regressions estimated separately for . Hence is the sample size used in the outcome regression for . The data-generating process is calibrated such that this is about .
+Due to local dependence, emmenegger2025treatment propose the following modification of cross-fitting to ensure independence between evaluation and training folds. First, they randomly partition into folds. For a given fold used to compute the estimator, the training fold for the random forest is the subset of the units not in fold that are not connected to a unit in and do not share a neighbor in common with any unit in (see their eq. (6)). The estimates are averaged across the folds to obtain . emmenegger2025treatment further reduce the randomness of this procedure by repeating the procedure times and taking to be the median result, but we only consider the standard case of .
+Table 1 presents the results. Whether using bootstrapped or subsampled trees, the emmenegger2025treatment estimator sees a reduction in bias and variance when using the full sample instead of cross-fitting. We also find that bootstrapped trees perform better in terms of bias and variance, particularly when cross-fitting. Such trees correspond to a subsample size (in the notation of Proposition 4) equal to , which violates assumption (a) of the proposition. This indicates that, while the condition is sufficient, it may not be necessary.
+Table 2 shows the average size of the training fold when cross-fitting for different values of and . We see that for the base design in Table 1, the fold size is small, only about 10 percent of the full sample, which explains why cross-fitting results in higher variance. When we increase the expected degree to 8, the fold size becomes negligible. This is because the network is denser, and almost all units in the training fold are less than distance 3 from the evaluation fold and end up excluded from training. When the expected degree is 5 but we reduce the number of folds to two, we again obtain close to negligible sample sizes. Despite the network being sparser, half of all units are in the evaluation fold, so the vast majority of units in the training fold are again less than distance 3 from the evaluation fold.
+| No Cross-fitting | Cross-fitting | ||||||
+|---|---|---|---|---|---|---|---|
+| 500 | 1000 | 2000 | 500 | 1000 | 2000 | ||
+| Bootstrap | Bias | 0.0007 | 0.0005 | 0.0009 | 0.0089 | 0.0019 | 0.0008 |
+| Std | 0.0657 | 0.0465 | 0.0331 | 0.0699 | 0.0474 | 0.0335 | |
+| Subsampling | Bias | 0.0092 | 0.0087 | 0.0075 | 0.0255 | 0.0219 | 0.0187 |
+| Std | 0.0715 | 0.0499 | 0.0348 | 0.0761 | 0.0526 | 0.0366 | |
+| 251.69 | 503.41 | 1007.42 | 251.69 | 503.41 | 1007.42 | ||
+| 0.3155 | 0.3155 | 0.3153 | 0.3155 | 0.3155 | 0.3153 |
+-
+5k simulations. “Bias” is the absolute average difference between and across simulation draws. “Std” is the standard deviation of across simulation draws. Cross-fitting uses 5 folds.
+| 500 | 1000 | 2000 | 500 | 1000 | 2000 | 500 | 1000 | 2000 | |
+| size | 74.12 | 148.43 | 297.06 | 0.46 | 0.95 | 1.93 | 2.03 | 4.13 | 8.25 |
+-
+5k simulations. expected degree. number of folds.
+6 Conclusion
+When cross-fitting with dependent data, existing proposals reduce correlation between training and evaluation folds by excluding from training observations too close to the evaluation set. This can result in a large number of excluded observations, particularly with network data. We establish the validity of DML methods using dependent data without cross-fitting when the machine learner is neighborhood-stable. This requires the learner to be robust to resampling data within a slowly growing neighborhood of any observation.
+When dependence is weaker in the sense that the -mixing coefficient decays faster with distance, neighborhood stability imposes weaker restrictions on the learner in that the neighborhood can be smaller relative to the sample size. CLTs for dependent data typically require mixing coefficients to decay with distance sufficiently fast relative to the sizes of -neighborhoods. We show that, under similar requirements, neighborhood stability holds for several classes of learners, including regularized -estimators and bagged learners.
+Appendix A Simulation Details
+This section details the design and random forest parameters used in the simulation study of emmenegger2025treatment, which we follow in section 5. Let and be independent. Treatments are drawn independently across units with where
+Let the network be drawn independently of these primitives by drawing links in an i.i.d. fashion across pairs with probability . Set if and
+otherwise. Finally let
+and
+The random forests average over 500 trees. Each tree has a minimum leaf size of 5. For the propensity score, the criterion is Gini impurity, and tree depth is limited to 2.
+Appendix B Proofs
+Recall that is the Euclidean norm, and . For any random variable , let . Recall that and are copies of with all three mutually independent.
+Define and analogously. Construct from by replacing with . Recall that and are the machine learners trained on and , respectively. Let , and recall that is the machine learner trained on .
+The following coupling lemma is originally due to berbee1979random.
+Lemma 1 (viennet1997inequalities, Lemma 5.1).
+Let be random variables taking values in the Borel spaces , respectively. Let be independent of . There exists a random variable for a measurable function such that , , and .
+B.1 Theorem 1
+For economy of notation, we suppress the subscripts throughout the argument. It suffices to show
+As in the proof of Lemma 2 of chen2022debiased, we break this into three components:
+By Assumption 2,
+Turning to , define , so
+We will show that and are .
+Step 1
+By Lemma 1, for all we can construct such that , , and . Define
+By Assumption 1(a), there exists such that , so
+Following the argument in chen2022debiased,
+where the third line uses Assumption 1(b). Therefore,
+so
+Step 2
+We bound by adapting the “double centering” argument of chen2022debiased. Define
+Then
+| (B.1) |
+by Assumption 1(a). Since ,
+| (B.2) |
+Let . By an argument similar to (B.2),
+and
+Combining these derivations,
+By Assumption 2,
+Therefore, , and
+B.2 Proposition 2
+Fix , and recall the definition of prior to (3). The proof of Theorem 22 of bousquet2002stability shows that for any ,
+This result is agnostic towards the distribution of and applies to our setup. Then
+| (B.3) |
+Without loss of generality, suppose the observations in are labeled . Let be the dataset obtained by replacing each element of with the corresponding element of and be the analog of trained on . Then
+using (B.3).
+B.3 Proposition 3
+Fix , and let the estimated parameters trained on rather than . Proposition 5.1 of kissel2023black, which is agnostic towards the distribution of , establishes (7) with replaced with .
+Without loss of generality, suppose the observations in are labeled . Let be the dataset obtained by replacing each element of with the corresponding element of and be the analog of trained on . Then
+by Proposition 5.1 of kissel2023black.
+B.4 Proposition 4
+The argument closely follows the proof of Theorem 5 of chen2022debiased. Fix . Let be the th observation (arbitrarily labeled) in the subsample . Let be the event that for some and . Define the single-bag increment
+Then if does not occur.
+Define where . Then
+| (B.4) |
+The second-to-last line follows because subsamples are identically distributed across conditional on .
+Turning to the first term,
+| (B.5) |
+for some constant universal across , , and . The inequality is due to the Marcinkiewicz-Zygmund inequality (see Lemma 7 of chen2022debiased, which is (1.2) of rio2009moment), which uses the fact that subsamples are i.i.d. across conditional on .
+Turning to the second term,
+| (B.6) |
+The first equality is the law of total probability. The second uses independence of and . The first inequality is Jensen’s. The last is the moments assumption (b).
+Also observe that
+| (B.7) |
+where the second line uses Hölder’s inequality and the last line uses the moments assumption (b).
+By the union bound,
+| (B.9) |
+Then for ,
+By the rates assumption (a), and , so the right side is as desired.
