@@ -43,7 +43,7 @@ class ArxivScraper:
             # Parse links using BeautifulSoup
             soup = BeautifulSoup(response.text, 'html.parser')
             article_urls = []
-            for a in soup.select('a[href*="/html/"]'):
+            for a in soup.select('a[href*="/pdf/"]'):
                 href = a.get('href')
                 if not href:
                     continue
@@ -158,7 +158,71 @@ class ArxivScraper:
             logger.info(f"Saved {len(articles)} articles to {filename}")
         except Exception as e:
             logger.error(f"Error saving articles to {filename}: {str(e)}")
-
+    
+    
+    def download_pdfs(self, pdf_urls, output_dir="pdfs", delay=None):
+        """
+        Download PDF files from a list of URLs
+        
+        Args:
+            pdf_urls (list): List of PDF URLs to download
+            output_dir (str): Directory to save PDFs (default: "pdfs")
+            delay (int): Override the default delay between downloads. If None, uses self.delay
+            
+        Returns:
+            dict: Dictionary with 'successful' and 'failed' lists containing the URLs
+        """
+        # Use provided delay or default delay
+        download_delay = delay if delay is not None else self.delay
+        
+        # Create output directory if it doesn't exist
+        os.makedirs(output_dir, exist_ok=True)
+        
+        successful = []
+        failed = []
+        
+        logger.info(f"Starting PDF download for {len(pdf_urls)} URLs")
+        
+        for i, pdf_url in enumerate(pdf_urls, 1):
+            try:
+                logger.info(f"Downloading PDF {i}/{len(pdf_urls)}: {pdf_url}")
+                
+                # Add delay to be respectful
+                if download_delay > 0:
+                    time.sleep(download_delay)
+                
+                response = self.session.get(pdf_url)
+                response.raise_for_status()
+                
+                # Extract filename from URL or create one
+                filename = pdf_url.split('/')[-1]
+                if not filename.lower().endswith('.pdf'):
+                    # If URL doesn't end with .pdf, create a filename from the URL
+                    filename = f"paper_{i}.pdf"
+                
+                filepath = os.path.join(output_dir, filename)
+                
+                # Handle duplicate filenames
+                counter = 1
+                original_filepath = filepath
+                while os.path.exists(filepath):
+                    name, ext = os.path.splitext(original_filepath)
+                    filepath = f"{name}_{counter}{ext}"
+                    counter += 1
+                
+                # Save the PDF
+                with open(filepath, 'wb') as f:
+                    f.write(response.content)
+                
+                logger.info(f"Successfully downloaded: {filepath}")
+                successful.append(pdf_url)
+                
+            except Exception as e:
+                logger.error(f"Failed to download {pdf_url}: {str(e)}")
+                failed.append(pdf_url)
+        
+        logger.info(f"PDF download completed! Successful: {len(successful)}, Failed: {len(failed)}")
+        return {"successful": successful, "failed": failed}
 # def main():
 #     """
 #     Main function to run the scraper

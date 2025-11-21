@@ -3,6 +3,8 @@ from homework.rag import RAGClass
 from homework.web_scraper import ArxivScraper
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from langchain_community.document_loaders import PyMuPDFLoader
+import pprint
 
 app = FastAPI()
 
@@ -13,17 +15,26 @@ list_urls = [
 @app.get("/search/")
 async def search(query: str, k = 3):
     scraper = ArxivScraper(delay=2)
-    article = scraper.scrape_article_content("https://arxiv.org/html/2511.10995v1")
-    scraper.save_articles([article], "./homework/arxiv_articles.txt")
-    # articles = scraper.scrape_articles_from_lists(list_urls, './src/homework/arxiv_articles.txt')
-    rag = RAGClass(data_path="./homework/arxiv_articles.txt")
+    articleUlrs = scraper.get_article_urls_from_list_page( "https://arxiv.org/list/econ.EM/recent");
+    # scraper.download_pdfs(articleUlrs)
+    loader = PyMuPDFLoader("./pdfs/paper_1.pdf")
+    docs = loader.load()
+    pprint.pp(docs[0].metadata)
 
-    rag.load_documents()
-    rag.split_documents()
-    rag.convert_text_to_embeddings_with_faiss()
+    # article = scraper.scrape_article_content("https://arxiv.org/html/2511.10995v1")
+    # scraper.save_articles([article], "./homework/arxiv_articles.txt")
+    # # articles = scraper.scrape_articles_from_lists(list_urls, './src/homework/arxiv_articles.txt')
+
     
-    # Search for similar chunks
-    results = rag.search_embeddings(query, k)
+
+    # rag = RAGClass(data_path="./homework/arxiv_articles.txt")
+
+    # rag.load_documents()
+    # rag.split_documents()
+    # rag.convert_text_to_embeddings_with_faiss()
+    
+    # # Search for similar chunks
+    # results = rag.search_embeddings(query, k)
     
     # Return results as JSON
     return JSONResponse(content={
