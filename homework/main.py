@@ -1,6 +1,6 @@
 # Initialize scraper with 2-second delay between requests
-from src.homework.rag import RAGClass
-from src.homework.web_scraper import ArxivScraper
+from homework.rag import RAGClass
+from homework.web_scraper import ArxivScraper
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
@@ -14,9 +14,9 @@ list_urls = [
 async def search(query: str, k = 3):
     scraper = ArxivScraper(delay=2)
     article = scraper.scrape_article_content("https://arxiv.org/html/2511.10995v1")
-    scraper.save_articles([article], "./src/homework/arxiv_articles.txt")
+    scraper.save_articles([article], "./homework/arxiv_articles.txt")
     # articles = scraper.scrape_articles_from_lists(list_urls, './src/homework/arxiv_articles.txt')
-    rag = RAGClass(data_path="./src/homework/arxiv_articles.txt")
+    rag = RAGClass(data_path="./homework/arxiv_articles.txt")
 
     rag.load_documents()
     rag.split_documents()

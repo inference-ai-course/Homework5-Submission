@@ -5,7 +5,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.agents.middleware import dynamic_prompt, ModelRequest
 from langchain.agents import create_agent
 from langchain_huggingface import HuggingFaceEmbeddings
-from dotenv import load_dotenv, find_dotenv
 import faiss
 
 
