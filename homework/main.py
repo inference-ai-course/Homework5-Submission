@@ -22,16 +22,12 @@ with open('huggingface_token.txt', 'r') as f:
 model_id = "meta-llama/Llama-3.1-8B"
 # keyword_generator = pipeline("text-generation", model="meta-llama/Meta-Llama-3.1-8B-Instruct",  device_map="auto")
 keyword_generator = pipeline(
-    "text-generation", model=model_id, model_kwargs={"torch_dtype": torch.bfloat16}, device_map="auto"
+    "text-generation", model=model_id, model_kwargs={"dtype": torch.bfloat16}, device_map="auto"
 )
 # keyword_extractor = pipeline("zero-shot-classification", model="facebook/bart-large-mnli",  device_map="auto")
 
 app = FastAPI()
 conn = sqlite3.connect("./homework/mydata.db")
-# if os.path.exists("./homework/mydata.db"):
-#     os.remove("./homework/mydata.db")
-# # Create database schema first
-# create_database_schema("./homework/mydata.db")
 
 list_urls = [
     "https://arxiv.org/list/econ.EM/recent"
@@ -45,13 +41,24 @@ async def search(query: str, k = 3):
     #     extracted_keywords =  auto_generate_keywords(doc.page_content[:1000])
     #     doc.metadata["keywords"] = ", ".join(extracted_keywords)
     #     pprint.pp(extracted_keywords)
+    docs = []
+    pdf_folder = "./pdfs"
+    for fname in os.listdir(pdf_folder):
+        if fname.lower().endswith('.pdf'):
+            loader = PyMuPDFLoader(os.path.join(pdf_folder, fname))
+            docs.extend(loader.load())
+
+    rag = RAGClass(docs)
+    rag.split_documents()
+    rag.convert_text_to_embeddings_with_faiss();
+
+    faissResults = rag.search_embeddings(query, k)
 
     cursor = conn.execute('''
         SELECT 
             d.title,
             d.author,
             c.chunk_index,
-            snippet(chunks_fts, 0, '<b>', '</b>', '...', 10) as match_preview,
             c.text_content -- The full text to send to the LLM
         FROM chunks_fts f
         JOIN chunks c ON f.rowid = c.id     -- Join Index to Child
@@ -61,18 +68,18 @@ async def search(query: str, k = 3):
         LIMIT ?;
     ''', (query, k))
 
-    results = []
+    ftsResults = []
     for row in cursor.fetchall():
-        results.append({
-            "doc_id": row[0],
-            "title": row[1], 
-            "content": row[2],
-            "highlighted_text": row[3]  # Shows matching terms in <b> tags
+        ftsResults.append({
+            "title": row[0],
+            "author": row[1], 
+            "chunk_index": row[2],
+            "text_content": row[3] 
         })
 
     return JSONResponse(content={
         "query": query,
-        "results": results
+        "results": ftsResults
     })
 
 
