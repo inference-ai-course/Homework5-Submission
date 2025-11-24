@@ -9,24 +9,14 @@ import faiss
 
 
 class RAGClass:
-    def __init__(self, data_path: str):
+    def __init__(self, documents: list):
         """
         Initialize the RAGClass with the path to the data file.
         """
-        self.data_path = data_path
-        self.documents = []
+        self.documents = documents
         self.text_chunks = []
         self.faiss_index = None
         self.embedding_model = HuggingFaceEmbeddings(model="sentence-transformers/all-mpnet-base-v2");
-
-    def load_documents(self):
-        """
-        Loads documents from the specified data path and stores them in self.documents.
-        Returns the loaded documents.
-        """
-        self.documents = TextLoader(self.data_path).load()
-        # print(f"Loaded {len(self.documents)} documents.")
-        return self.documents
 
     def split_documents(self, chunk_size=256, chunk_overlap=10):
         """
