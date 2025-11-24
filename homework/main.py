@@ -1,29 +1,24 @@
 # Initialize scraper with 2-second delay between requests
 from homework.rag import RAGClass
-from homework.web_scraper import ArxivScraper
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from langchain_community.document_loaders import PyMuPDFLoader
-import pprint
 import os
-import re
-from collections import Counter
 from transformers import pipeline
 import torch
 from huggingface_hub import login
 import sqlite3
-from homework.db_schema import create_database_schema
 
 # Attempt login using the HUGGINGFACE_TOKEN environment variable
-with open('huggingface_token.txt', 'r') as f:
-    token = f.read().strip()
-    login(token=token)
+# with open('huggingface_token.txt', 'r') as f:
+#     token = f.read().strip()
+#     login(token=token)
 
-model_id = "meta-llama/Llama-3.1-8B"
-# keyword_generator = pipeline("text-generation", model="meta-llama/Meta-Llama-3.1-8B-Instruct",  device_map="auto")
-keyword_generator = pipeline(
-    "text-generation", model=model_id, model_kwargs={"dtype": torch.bfloat16}, device_map="auto"
-)
+# model_id = "meta-llama/Llama-3.1-8B"
+# # keyword_generator = pipeline("text-generation", model="meta-llama/Meta-Llama-3.1-8B-Instruct",  device_map="auto")
+# keyword_generator = pipeline(
+#     "text-generation", model=model_id, model_kwargs={"dtype": torch.bfloat16}, device_map="auto"
+# )
 # keyword_extractor = pipeline("zero-shot-classification", model="facebook/bart-large-mnli",  device_map="auto")
 
 app = FastAPI()
