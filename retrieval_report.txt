@@ -1,0 +1,202 @@
+====================================================================================================
+RETRIEVAL REPORT: arXiv cs.CL Papers RAG System
+====================================================================================================
+
+
+====================================================================================================
+QUERY 1: What are transformer models and how do they work?
+====================================================================================================
+
+--- Result 1 ---
+Paper Title: Impact of Layer Norm on Memorization and Generalization in Transformers
+Paper ID: 2511.10566v1
+Chunk Index: 14
+Distance Score: 1.1482
+
+Text Excerpt (first 400 characters):
+deep transformers. arXiv preprint arXiv:2206.00330, 2022. Shufang Xie, Huishuai Zhang, Junliang Guo, Xu Tan, Jiang Bian, Hany Hassan Awadalla, Arul Menezes, Tao Qin, and Rui Yan. Residual: Transformer with dual residual connections. arXiv preprint arXiv:2304.14802, 2023. Jeonghoon Kim, Byeongchan Lee, Cheonbok Park, Yeontaek Oh, Beomjun Kim, Taehwan Yoo, Seongjin Shin, Dongyoon Han, Jinwoo Shin, a...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 2 ---
+Paper Title: Impact of Layer Norm on Memorization and Generalization in Transformers
+Paper ID: 2511.10566v1
+Chunk Index: 34
+Distance Score: 1.2561
+
+Text Excerpt (first 400 characters):
+We then introduce noisy labels, by flipping labels of 1% of class 2 train samples to any another random class label, and train the model till it achieves 100% train accuracy. NICO++ dataset [Zhang et al., 2023] consists of approximately 60,000 images distributed across 60 categories of everyday objects. In this study, we select a subset of 15 object categories, including car, flower, penguin, came...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 3 ---
+Paper Title: Impact of Layer Norm on Memorization and Generalization in Transformers
+Paper ID: 2511.10566v1
+Chunk Index: 3
+Distance Score: 1.3175
+
+Text Excerpt (first 400 characters):
+contribution to understanding the function of LN in transformers for learning and memorization. 3 Prelimnaries 3.1 Understanding LayerNorm in Transformers and Defining Memorization & Learning LayerNorm Operation. Let x = (x1, x2, . . . , xd) be the input of size d to the LayerNorm function LN(x) which first normalizes the input x as N(x) using mean µ and standard deviation σ. Then it re-scales and...
+
+----------------------------------------------------------------------------------------------------
+
+
+====================================================================================================
+QUERY 2: Explain attention mechanisms in natural language processing
+====================================================================================================
+
+--- Result 1 ---
+Paper Title: On the Military Applications of Large Language Models
+Paper ID: 2511.10093v1
+Chunk Index: 19
+Distance Score: 0.9029
+
+Text Excerpt (first 400 characters):
+knowledge in all so-far published text. REFERENCES [1] A. Vaswani et al., “Attention is all you need,” in Advances in Neural Information Processing Systems, 2017, vol. 30. [Online]. Available: https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee24354 7dee91fbd053c1c4a845aa-Paper.pdf [2] A. Radford, K. Narasimhan, T. Salimans, and I. Sutskever, “Improving language understanding by gener...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 2 ---
+Paper Title: URaG: Unified Retrieval and Generation in Multimodal LLMs for Efficient Long Document Understanding
+Paper ID: 2511.10552v1
+Chunk Index: 4
+Distance Score: 0.9332
+
+Text Excerpt (first 400 characters):
+(a). We further evaluate the re- trieval accuracy using attention weights as retrieval scores to identify evidence pages, as shown in Figure 2 (b). In ad- dition, we compute query-to-visual similarity using hidden states from each layer as embeddings, enabling embedding- based retrieval, as shown in Figure 2 (c). From the visual- izations and metrics, we observe the following trends: (1) In the ea...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 3 ---
+Paper Title: Analogical Structure, Minimal Contextual Cues and Contrastive Distractors: Input Design for Sample-Efficient Linguistic Rule Induction
+Paper ID: 2511.10441v1
+Chunk Index: 2
+Distance Score: 0.9759
+
+Text Excerpt (first 400 characters):
+test systematic lin- guistic rule learning. This section describes our task framework, linguistic domain, and distractor design methodology. 2.1 Task Framework Our completion tasks organize linguistic data into analogical paradigm structures. Each instance con- tains a structured Context comprising two parallel 1Code, data, and replication steps will be made publicly available upon publication. pa...
+
+----------------------------------------------------------------------------------------------------
+
+
+====================================================================================================
+QUERY 3: How do large language models learn from data?
+====================================================================================================
+
+--- Result 1 ---
+Paper Title: LOCA-R: Near-Perfect Performance on the Chinese Physics Olympiad 2025
+Paper ID: 2511.10515v1
+Chunk Index: 12
+Distance Score: 0.7469
+
+Text Excerpt (first 400 characters):
+international conference on learning representations, 2022. Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Tom Griffiths, Yuan Cao, and Karthik Narasimhan. Tree of thoughts: Deliberate problem solving with large language models. Advances in neural information processing systems, 36:11809–11822, 2023. Dan Zhang, Ziniu Hu, Sining Zhoubian, Zhengxiao Du, Kaiyu Yang, Zihan Wang, Yisong Yue, Yuxiao ...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 2 ---
+Paper Title: Position: On the Methodological Pitfalls of Evaluating Base LLMs for Reasoning
+Paper ID: 2511.10381v1
+Chunk Index: 24
+Distance Score: 0.8027
+
+Text Excerpt (first 400 characters):
+your language model is secretly a re- ward model. In Proceedings of the 37th In- ternational Conference on Neural Information Processing Systems, NIPS ’23, Red Hook, NY, USA. Curran Associates Inc. Yasaman Razeghi, Robert L Logan IV, Matt Gard- ner, and Sameer Singh. 2022. Impact of pre- training term frequencies on few-shot numeri- cal reasoning. In Findings of the Association for Computational L...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 3 ---
+Paper Title: Reasoning About Intent for Ambiguous Requests
+Paper ID: 2511.10453v1
+Chunk Index: 16
+Distance Score: 0.8042
+
+Text Excerpt (first 400 characters):
+ambiguous inputs. In The 12th International Conference on Learning Representations. Kai Sun, Yifan Xu, Hanwen Zha, Yue Liu, and Xin Luna Dong. 2024. Head-to-tail: How knowledgeable are large language models (LLMs)? A.K.A. will LLMs replace knowledge graphs? In Proceedings of the 2024 Confer- ence of the North American Chapter of the As- sociation for Computational Linguistics: Hu- man Language Tec...
+
+----------------------------------------------------------------------------------------------------
+
+
+====================================================================================================
+QUERY 4: What techniques are used for training language models?
+====================================================================================================
+
+--- Result 1 ---
+Paper Title: LangGPS: Language Separability Guided Data Pre-Selection for Joint Multilingual Instruction Tuning
+Paper ID: 2511.10229v1
+Chunk Index: 1
+Distance Score: 0.8502
+
+Text Excerpt (first 400 characters):
+Despite these advances, the success of multilingual instruction tuning remains highly sensitive to the composi- tion and selection of the training data. Consequently, Data Selection has emerged as a critical strategy for balancing ef- fectiveness and efficiency in large-scale model training. Ex- isting approaches can be typically grouped into two main categories: feature-based methods, which prior...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 2 ---
+Paper Title: LangGPS: Language Separability Guided Data Pre-Selection for Joint Multilingual Instruction Tuning
+Paper ID: 2511.10229v1
+Chunk Index: 4
+Distance Score: 0.8855
+
+Text Excerpt (first 400 characters):
+finetuning to improve semantic alignment (Ranaldi, Pucci, and Freitas 2024), combine translation data, cross-lingual tasks, and scaling laws (Zhu et al. 2023), or leverage self-distillation from high-resource languages (Zhang et al. 2024). Beyond data- level interventions, Ye et al. (2025) explored latent-level cross-lingual interactions via a cross-lingual connection mechanism. Empirical results ...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 3 ---
+Paper Title: LangGPS: Language Separability Guided Data Pre-Selection for Joint Multilingual Instruction Tuning
+Paper ID: 2511.10229v1
+Chunk Index: 15
+Distance Score: 0.9062
+
+Text Excerpt (first 400 characters):
+Geng, X.; Zhao, P.; Feng, J.; Tao, C.; Lin, Q.; and Jiang, D. 2024. WizardLM: Empow- ering large pre-trained language models to follow complex instructions. In The Twelfth International Conference on Learning Representations. Yang, A.; Yang, B.; Zhang, B.; Hui, B.; Zheng, B.; Yu, B.; Li, C.; Liu, D.; Huang, F.; Wei, H.; Lin, H.; Yang, J.; Tu, J.; Zhang, J.; Yang, J.; Yang, J.; Zhou, J.; Lin, J.; D...
+
+----------------------------------------------------------------------------------------------------
+
+
+====================================================================================================
+QUERY 5: How do we evaluate the performance of NLP models?
+====================================================================================================
+
+--- Result 1 ---
+Paper Title: Reasoning About Intent for Ambiguous Requests
+Paper ID: 2511.10453v1
+Chunk Index: 15
+Distance Score: 0.9503
+
+Text Excerpt (first 400 characters):
+and David Jurgens. 2022. POTATO: The portable text annotation tool. In Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pages 327–337, Abu Dhabi, UAE. Association for Computational Linguistics. Steven T Piantadosi, Harry Tily, and Edward Gib- son. 2012. The communicative function of am- biguity in language. Cognition, 122(3):280– 291. M...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 2 ---
+Paper Title: Mined Prompting and Metadata-Guided Generation for Wound Care Visual Question Answering
+Paper ID: 2511.10591v1
+Chunk Index: 5
+Distance Score: 0.9543
+
+Text Excerpt (first 400 characters):
+the final weight. BERTScore: An embedding-based metric that measures the semantic similarity between the gen- erated and reference texts. ROUGE-L: A recall-oriented metric that mea- sures the longest common subsequence. 6 Results and Discussion 6.1 Performance Comparison Table 2 presents a comparative evaluation of dif- ferent approaches across multiple metrics, includ- ing deltaBLEU and ROUGE-L f...
+
+----------------------------------------------------------------------------------------------------
+
+--- Result 3 ---
+Paper Title: ParoQuant: Pairwise Rotation Quantization for Efficient Reasoning LLM Inference
+Paper ID: 2511.10645v1
+Chunk Index: 15
+Distance Score: 0.9559
+
+Text Excerpt (first 400 characters):
+Tim Rault, Remi Louf, Morgan Funtowicz, et al. Transformers: State-of-the-Art Natural Language Processing. In Conference on Empirical Methods in Natural Language Processing (EMNLP), 2020. 8, 15 Guangxuan Xiao, Ji Lin, Mickael Seznec, Hao Wu, Julien Demouth, and Song Han. SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models. In International Conference on Machine...
+
+----------------------------------------------------------------------------------------------------
+
+
+====================================================================================================
+SYSTEM STATISTICS
+====================================================================================================
+Total papers indexed: 50
+Total chunks: 1078
+Embedding dimension: 384
+Embedding model: all-MiniLM-L6-v2
