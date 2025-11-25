@@ -1,0 +1,23 @@
+# Core dependencies
+faiss-cpu==1.7.4
+sentence-transformers==2.2.2
+numpy==1.24.3
+pandas==2.0.3
+
+# API
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+
+# PDF processing
+pypdf==3.17.0
+
+# Data collection (optional)
+requests==2.31.0
+beautifulsoup4==4.12.2
+trafilatura==1.6.2
+
+# Evaluation
+matplotlib==3.7.2
+seaborn==0.12.2
+jupyter==1.0.0

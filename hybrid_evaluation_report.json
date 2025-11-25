@@ -1,0 +1,352 @@
+{
+  "summary": {
+    "vector_only": {
+      "avg_recall@3": 0.7222222222222222,
+      "avg_hit_rate@3": 0.8333333333333334,
+      "avg_precision@3": 0.4166666666666667
+    },
+    "keyword_only": {
+      "avg_recall@3": 0.6666666666666666,
+      "avg_hit_rate@3": 0.8333333333333334,
+      "avg_precision@3": 0.3611111111111111
+    },
+    "hybrid_weighted": {
+      "avg_recall@3": 0.6527777777777777,
+      "avg_hit_rate@3": 0.8333333333333334,
+      "avg_precision@3": 0.3611111111111111,
+      "alpha": 0.6,
+      "fusion_method": "weighted"
+    },
+    "hybrid_rrf": {
+      "avg_recall@3": 0.7638888888888888,
+      "avg_hit_rate@3": 1.0,
+      "avg_precision@3": 0.4166666666666666,
+      "fusion_method": "rrf"
+    }
+  },
+  "per_query_results": [
+    {
+      "query": "attention mechanisms in transformers",
+      "vector": {
+        "recall@3": 0.0,
+        "hit_rate@3": 0.0,
+        "precision@3": 0.0
+      },
+      "keyword": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_weighted": {
+        "recall@3": 0.0,
+        "hit_rate@3": 0.0,
+        "precision@3": 0.0
+      },
+      "hybrid_rrf": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.13126"
+      ]
+    },
+    {
+      "query": "reinforcement learning from human feedback",
+      "vector": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "keyword": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "hybrid_weighted": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "hybrid_rrf": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "expected_papers": [
+        "2511.12573",
+        "2511.12861"
+      ]
+    },
+    {
+      "query": "language models few-shot learning",
+      "vector": {
+        "recall@3": 0.0,
+        "hit_rate@3": 0.0,
+        "precision@3": 0.0
+      },
+      "keyword": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_weighted": {
+        "recall@3": 0.0,
+        "hit_rate@3": 0.0,
+        "precision@3": 0.0
+      },
+      "hybrid_rrf": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.12728",
+        "2511.13107",
+        "2511.13118"
+      ]
+    },
+    {
+      "query": "neural network architecture",
+      "vector": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "keyword": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_weighted": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_rrf": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.12851"
+      ]
+    },
+    {
+      "query": "machine translation",
+      "vector": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "keyword": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_weighted": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_rrf": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.13180"
+      ]
+    },
+    {
+      "query": "natural language processing",
+      "vector": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "keyword": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_weighted": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_rrf": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.13095"
+      ]
+    },
+    {
+      "query": "transformer model",
+      "vector": {
+        "recall@3": 0.6666666666666666,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "keyword": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_weighted": {
+        "recall@3": 0.6666666666666666,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "hybrid_rrf": {
+        "recall@3": 0.6666666666666666,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "expected_papers": [
+        "2511.13126",
+        "2511.12874",
+        "2511.12768"
+      ]
+    },
+    {
+      "query": "deep learning optimization",
+      "vector": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "keyword": {
+        "recall@3": 0.0,
+        "hit_rate@3": 0.0,
+        "precision@3": 0.0
+      },
+      "hybrid_weighted": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_rrf": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.12661"
+      ]
+    },
+    {
+      "query": "text generation",
+      "vector": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "keyword": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_weighted": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_rrf": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.13593",
+        "2511.12832",
+        "2511.12609"
+      ]
+    },
+    {
+      "query": "semantic similarity",
+      "vector": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "keyword": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "hybrid_weighted": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "hybrid_rrf": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "expected_papers": [
+        "2511.12784",
+        "2511.12928"
+      ]
+    },
+    {
+      "query": "pre-training language models",
+      "vector": {
+        "recall@3": 0.6666666666666666,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "keyword": {
+        "recall@3": 0.0,
+        "hit_rate@3": 0.0,
+        "precision@3": 0.0
+      },
+      "hybrid_weighted": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_rrf": {
+        "recall@3": 0.3333333333333333,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.13107",
+        "2511.13159",
+        "2511.12690"
+      ]
+    },
+    {
+      "query": "zero-shot learning",
+      "vector": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "keyword": {
+        "recall@3": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666
+      },
+      "hybrid_weighted": {
+        "recall@3": 0.5,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "hybrid_rrf": {
+        "recall@3": 0.5,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333
+      },
+      "expected_papers": [
+        "2511.12630",
+        "2511.13152"
+      ]
+    }
+  ]
+}
