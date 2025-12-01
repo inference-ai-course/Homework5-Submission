@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arXiv Papers Query</title>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+</head>
+<body>
+
+    <div style="padding: 20px;">
+        <label for="query_text">Query:</label>
+        <input type="text" id="query_text" 
+                style="width: 400px;"
+                placeholder="Type questions about arXiv cs.CL papers">
+        <button type="button" onclick="doVectorSearch()">Vector Search</button>
+        <button type="button" onclick="doKeywordSearch()">Keyword Search</button>
+        <button type="button" onclick="doHybridSearch()">Hybrid Search</button>
+        
+        <button type="button" id="clearBtn">Clear</button>
+    </div>
+
+    <div id="vector_section" style="display: none;">
+        <div>Vector</div>
+        <pre id="resultBox1"></pre>
+    </div>
+    <div id="keyword_section" style="padding-top: 20px;display: none;">
+        <div>Keyword</div>
+        <pre id="resultBox2"></pre>
+    </div>
+    <div id="hybrid_section" style="padding-top: 20px;display: none;">
+        <div>Hybrid</div>
+        <pre id="resultBox3"></pre>
+        <button type="button" id="filterBtn">Top 3 Without Duplicates</button>
+    </div>
+
+    <script src="static/script/myscript.js"></script>
+
+</body>
+</html>
