@@ -16,25 +16,28 @@ from util.databaseUtil import ArXivDatabase
 chunks = []
 faiss_index = None
 db = None
-
+input_dir = 'arxiv_pdfs/'
+meta_data_file = f"{input_dir}/metadata.json"
 
 def init_server():
     try:
         # Fetch 50 cs.CL papers
-        input_dir = 'arxiv_pdfs/'
-        if not os.path.exists(input_dir) or (not Path(input_dir).glob('*.pdf')):
+        if not os.path.exists(meta_data_file):
             print('Fetch 50 cs.CL papers...')
             fetch_arxiv_papers(category='cs.CL')
 
         # Get all PDF files and generate chunks
         print('Get all PDF files and generate chunks...')
         chunk_map = {}
-        pdf_files = sorted(Path(input_dir).glob('*.pdf'))
-        for pdf_file in pdf_files:
-            doc_id, text = extract_text_from_pdf(pdf_file)
+        with open(meta_data_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        metadata = json_data['metadata']
+        for pdf_data in metadata:
+            doc_id, text = extract_text_from_pdf(pdf_data)
             temp_chunks = chunk_text(text)
             chunk_map[doc_id] = temp_chunks
             chunks.extend(temp_chunks)
+            print(f'Done processing {doc_id}')
 
         #Embedding and FAISS Indexing
         print('Embedding and FAISS Indexing...')
@@ -47,7 +50,7 @@ def init_server():
         global db
         db = ArXivDatabase()
         db.create_tables()
-        db.insert_data(chunk_map, 'arxiv_pdfs/metadata.json')
+        db.insert_data(chunk_map, meta_data_file)
 
     except Exception as e: 
         print(f"Error in initializing: {e}")
@@ -56,15 +59,14 @@ def init_server():
         
 def fetch_arxiv_papers(category='cs.CL', max_results=50):
     """
-    Fetch arXiv papers from specified category and download PDFs
+    Fetch metadata for arXiv papers from specified category
     
     Args:
         category: arXiv category (default: cs.CL for Computation and Language)
         max_results: Number of papers to fetch (default: 50)
     """
     # Create directory for PDFs
-    pdf_dir = Path('arxiv_pdfs')
-    pdf_dir.mkdir(exist_ok=True)
+    Path(input_dir).mkdir(exist_ok=True)
     
     # arXiv API base URL
     base_url = 'http://export.arxiv.org/api/query?'
@@ -107,7 +109,7 @@ def fetch_arxiv_papers(category='cs.CL', max_results=50):
         for idx, entry in enumerate(entries, 1):
             # Get paper ID
             paper_id = entry.find('atom:id', ns).text.split('/abs/')[-1]
-            print(paper_id)
+            #print(paper_id)
             # Get title
             title = entry.find('atom:title', ns).text.strip().replace('\n', ' ')
             # Get publish year
@@ -118,13 +120,6 @@ def fetch_arxiv_papers(category='cs.CL', max_results=50):
             author_elements = entry.findall('atom:author', ns)
             for author in author_elements:
                 authors += author.find('atom:name', ns).text.strip() + ', '
-
-            paper_info['metadata'].append({
-                'doc_id': paper_id,
-                'title': title,
-                'author': authors[0:-2],
-                'year': year 
-            })
             
             # Get PDF link
             pdf_link = None
@@ -133,48 +128,30 @@ def fetch_arxiv_papers(category='cs.CL', max_results=50):
                     pdf_link = link.get('href')
                     break
             
-            if pdf_link:
-                # Create safe filename
-                safe_title = "".join(c for c in title[:50] if c.isalnum() or c in (' ', '-', '_')).strip()
-                filename = f"{paper_id.replace('/', '_')}_{safe_title}.pdf"
-                filepath = pdf_dir / filename
-                
-                print(f"[{idx}/{len(entries)}] Downloading: {title[:80]}...")
-                print(f"    ID: {paper_id}")
-                print(f"    Saving to: {filename}")
-                
-                try:
-                    urllib.request.urlretrieve(pdf_link, filepath)
-                    print(f"    ✓ Downloaded successfully\n")
-                except Exception as e:
-                    print(f"    ✗ Error downloading: {e}\n")
-                
-                # Be nice to the arXiv API - add delay between downloads
-                if idx < len(entries):
-                    time.sleep(3)  # 3 second delay between requests
-            else:
-                print(f"[{idx}/{len(entries)}] No PDF link found for: {title[:80]}\n")
-        # end of for loop
+            paper_info['metadata'].append({
+                'doc_id': paper_id,
+                'title': title,
+                'author': authors[0:-2],
+                'year': year,
+                'pdf_link': pdf_link
+            })
+        # end of for loop 
 
-        paper_info['metadata'].sort(key=lambda item: item['doc_id'])
-
-        print(f"\nDownload complete! PDFs saved to: {pdf_dir.absolute()}")
         print(f"Successfully processed {len(entries)} papers")
-        with open(f"{pdf_dir}/metadata.json", 'w', encoding='utf-8') as f:
+        with open(meta_data_file, 'w', encoding='utf-8') as f:
             json.dump(paper_info, f, indent=2, ensure_ascii=False)
         
     except Exception as e:
         print(f"Error fetching papers: {e}")
 
 
-def extract_text_from_pdf(pdf_path) -> str:
+def extract_text_from_pdf(pdf_data) -> str:
     """
     Open a PDF and extract all text as a single string.
     """
-    file_name = pdf_path.name
-    doc_id = file_name[0:file_name.find('_')]
 
-    doc = fitz.open(pdf_path)
+    pdf_bytes = urllib.request.urlopen(pdf_data['pdf_link']).read()
+    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
     pages = []
     for page in doc:
         page_text = page.get_text()  # get raw text from page
@@ -182,7 +159,7 @@ def extract_text_from_pdf(pdf_path) -> str:
         pages.append(page_text)
     full_text = "\n".join(pages)
     
-    return doc_id, full_text
+    return pdf_data['doc_id'], full_text
 
 
 def chunk_text(text: str, max_tokens: int = 512, overlap: int = 50) -> list[str]:
@@ -295,7 +272,7 @@ def top_k_hybrid_results(hybrid_results, top):
     count = 0
     i = 0
     total = len(hybrid_results)
-    while i < total:
+    while i < total: 
         if count == top:
             break
         if i < total-1 and same_chunk(hybrid_results[i], hybrid_results[i+1]):

@@ -4,9 +4,9 @@ import json
 from pathlib import Path
 import util.util as util
 from util.databaseUtil import ArXivDatabase
+import faiss
 
-
-input_dir = 'arxiv_pdfs/'
+meta_data_file = 'arxiv_pdfs/metadata.json'
 output_dir = 'output/'
 
 def chunk_json(chunks: list):
@@ -45,23 +45,26 @@ def faiss_report(faiss_index):
 
 if __name__ == "__main__":
     # Fetch 50 cs.CL papers
-    
-    if not os.path.exists(input_dir) or (not Path(input_dir).glob('*.pdf')):
-        util.fetch_arxiv_papers(category='cs.CL', max_results=50)
+
+    if not os.path.exists(meta_data_file):
+        util.fetch_arxiv_papers(category='cs.CL')
 
     # Get all PDF files
-    pdf_files = sorted(Path(input_dir).glob('*.pdf'))
     chunks = []
     
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
     papers = []
     
-    for pdf_file in pdf_files:
-        id, text = util.extract_text_from_pdf(pdf_file)
+    with open(meta_data_file, 'r', encoding='utf-8') as f:
+        json_data = json.load(f)
+    metadata = json_data['metadata']
+    for pdf_data in metadata:
+        id, text = util.extract_text_from_pdf(pdf_data)
         temp_chunks = util.chunk_text(text)
-        papers.append({'paper': pdf_file.name, 'chunks': chunk_json(temp_chunks)})
+        papers.append({'paper_id': id, 'title': pdf_data['title'], 'chunks': chunk_json(temp_chunks)})
         chunks.extend(temp_chunks)
+        print(f'Done processing {id}')
 
     #Generate paper_chunks.json
     with open(output_dir + 'paper_chunks.json', 'w') as f:
@@ -76,5 +79,3 @@ if __name__ == "__main__":
     print(f"faiss index file is generated in '{output_dir}' directory")
 
     #faiss_report(faiss_index)
-
-    

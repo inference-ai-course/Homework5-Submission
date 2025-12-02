@@ -2,304 +2,354 @@
   "total": 50,
   "metadata": [
     {
-      "doc_id": "2511.15605v1",
-      "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
-      "author": "Senyu Fei, Siyin Wang, Li Ji, Ao Li, Shiduo Zhang, Liming Liu, Jinlong Hou, Jingjing Gong, Xianzhong Zhao, Xipeng Qiu",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15613v1",
-      "title": "When to Think and When to Look: Uncertainty-Guided Lookback",
-      "author": "Jing Bi, Filippos Bellos, Junjia Guo, Yayuan Li, Chao Huang, Yunlong, Tang, Luchuan Song, Susan Liang, Zhongfei, Zhang, Jason J. Corso, Chenliang Xu",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15661v2",
-      "title": "VisPlay: Self-Evolving Vision-Language Models from Images",
-      "author": "Yicheng He, Chengsong Huang, Zongxia Li, Jiaxin Huang, Yonghui Yang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15690v1",
-      "title": "MoDES: Accelerating Mixture-of-Experts Multimodal Large Language Models via Dynamic Expert Skipping",
-      "author": "Yushi Huang, Zining Wang, Zhihang Yuan, Yifu Ding, Ruihao Gong, Jinyang Guo, Xianglong Liu, Jun Zhang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15703v1",
-      "title": "Think Visually, Reason Textually: Vision-Language Synergy in ARC",
-      "author": "Beichen Zhang, Yuhang Zang, Xiaoyi Dong, Yuhang Cao, Haodong Duan, Dahua Lin, Jiaqi Wang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15709v1",
-      "title": "Tokenisation over Bounded Alphabets is Hard",
-      "author": "Violeta Kastreva, Philip Whittington, Dennis Komm, Tiago Pimentel",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15848v1",
-      "title": "Step-Audio-R1 Technical Report",
-      "author": "Fei Tian, Xiangyu Tony Zhang, Yuxin Zhang, Haoyang Zhang, Yuxin Li, Daijiao Liu, Yayue Deng, Donghang Wu, Jun Chen, Liang Zhao, Chengyuan Yao, Hexin Liu, Eng Siong Chng, Xuerui Yang, Xiangyu Zhang, Daxin Jiang, Gang Yu",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15862v1",
-      "title": "The Subtle Art of Defection: Understanding Uncooperative Behaviors in LLM based Multi-Agent Systems",
-      "author": "Devang Kulshreshtha, Wanyu Du, Raghav Jain, Srikanth Doss, Hang Su, Sandesh Swamy, Yanjun Qi",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15886v1",
-      "title": "What Really Counts? Examining Step and Token Level Attribution in Multilingual CoT Reasoning",
-      "author": "Jeremias Ferrao, Ezgi Basar, Khondoker Ittehadul Islam, Mahrokh Hassani",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15887v1",
-      "title": "Mind the Motions: Benchmarking Theory-of-Mind in Everyday Body Language",
-      "author": "Seungbeen Lee, Jinhong Jeong, Donghyun Kim, Yejin Son, Youngjae Yu",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15915v1",
-      "title": "AccelOpt: A Self-Improving LLM Agentic System for AI Accelerator Kernel Optimization",
-      "author": "Genghan Zhang, Shaowei Zhu, Anjiang Wei, Zhenyu Song, Allen Nie, Zhen Jia, Nandita Vijaykumar, Yida Wang, Kunle Olukotun",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15958v1",
-      "title": "JudgeBoard: Benchmarking and Enhancing Small Language Models for Reasoning Evaluation",
-      "author": "Zhenyu Bi, Gaurav Srivastava, Yang Li, Meng Lu, Swastik Roy, Morteza Ziyadi, Xuan Wang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15976v1",
-      "title": "TOD-ProcBench: Benchmarking Complex Instruction-Following in Task-Oriented Dialogues",
-      "author": "Sarik Ghazarian, Abhinav Gullapalli, Swair Shah, Anurag Beniwal, Nanyun Peng, Narayanan Sadagopan, Zhou Yu",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15994v1",
-      "title": "CARE-RAG - Clinical Assessment and Reasoning in RAG",
-      "author": "Deepthi Potluri, Aby Mammen Mathew, Jeffrey B DeWitt, Alexander L. Rasgon, Yide Hao, Junyuan Hong, Ying Ding",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.15996v1",
-      "title": "QueryGym: A Toolkit for Reproducible LLM-Based Query Reformulation",
-      "author": "Amin Bigdeli, Radin Hamidi Rad, Mert Incesu, Negar Arabzadeh, Charles L. A. Clarke, Ebrahim Bagheri",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16018v1",
-      "title": "SpellForger: Prompting Custom Spell Properties In-Game using BERT supervised-trained model",
-      "author": "Emanuel C. Silva, Emily S. M. Salum, Gabriel M. Arantes, Matheus P. Pereira, Vinicius F. Oliveira, Alessandro L. Bicho",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16035v1",
-      "title": "Liars' Bench: Evaluating Lie Detectors for Language Models",
-      "author": "Kieron Kretschmar, Walter Laurito, Sharan Maiya, Samuel Marks",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16054v1",
-      "title": "Learning Tractable Distributions Of Language Model Continuations",
-      "author": "Gwen Yidou-Weng, Ian Li, Anji Liu, Oliver Broadrick, Guy Van den Broeck, Benjie Wang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16072v1",
-      "title": "Early science acceleration experiments with GPT-5",
-      "author": "Sébastien Bubeck, Christian Coester, Ronen Eldan, Timothy Gowers, Yin Tat Lee, Alexandru Lupsasca, Mehtaab Sawhney, Robert Scherrer, Mark Sellke, Brian K. Spears, Derya Unutmaz, Kevin Weil, Steven Yin, Nikita Zhivotovskiy",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16122v1",
-      "title": "ELPO: Ensemble Learning Based Prompt Optimization for Large Language Models",
-      "author": "Qing Zhang, Bing Xu, Xudong Zhang, Yifan Shi, Yang Li, Chen Zhang, Yik Chung Wu, Ngai Wong, Yijie Chen, Hong Dai, Xiansen Chen, Mian Zhang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16147v1",
-      "title": "TS-PEFT: Token-Selective Parameter-Efficient Fine-Tuning with Learnable Threshold Gating",
-      "author": "Dabiao Ma, Ziming Dai, Zhimin Xin, Shu Wang, Ye Wang, Haojun Fei",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16198v1",
-      "title": "SemanticCite: Citation Verification with AI-Powered Full-Text Analysis and Evidence-Based Reasoning",
-      "author": "Sebastian Haan",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16209v1",
-      "title": "PSM: Prompt Sensitivity Minimization via LLM-Guided Black-Box Optimization",
-      "author": "Huseein Jawad, Nicolas Brunel",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16221v1",
-      "title": "Can MLLMs Read the Room? A Multimodal Benchmark for Assessing Deception in Multi-Party Social Interactions",
-      "author": "Caixin Kang, Yifei Huang, Liangyang Ouyang, Mingfang Zhang, Ruicong Liu, Yoichi Sato",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16275v1",
-      "title": "SeSE: A Structural Information-Guided Uncertainty Quantification Framework for Hallucination Detection in LLMs",
-      "author": "Xingtao Zhao, Hao Peng, Dingli Su, Xianghua Zeng, Chunyang Liu, Jinzhi Liao, Philip S. Yu",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16324v1",
-      "title": "SDA: Steering-Driven Distribution Alignment for Open LLMs without Fine-Tuning",
-      "author": "Wei Xia, Zhi-Hong Deng",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16331v1",
-      "title": "Incorporating Self-Rewriting into Large Language Model Reasoning Reinforcement",
-      "author": "Jiashu Yao, Heyan Huang, Shuang Zeng, Chuwei Luo, WangJie You, Jie Tang, Qingsong Liu, Yuhang Guo, Yangyang Kang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16334v1",
-      "title": "OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe",
-      "author": "Kaichen Zhang, Keming Wu, Zuhao Yang, Kairui Hu, Bin Wang, Ziwei Liu, Xingxuan Li, Lidong Bing",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16345v1",
-      "title": "NLP Datasets for Idiom and Figurative Language Tasks",
-      "author": "Blake Matheny, Phuong Minh Nguyen, Minh Le Nguyen, Stephanie Reynolds",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16353v1",
-      "title": "Learning from Sufficient Rationales: Analysing the Relationship Between Explanation Faithfulness and Token-level Regularisation Strategies",
-      "author": "Jonathan Kamp, Lisa Beinborn, Antske Fokkens",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16397v1",
-      "title": "AICC: Parse HTML Finer, Make Models Better -- A 7.3T AI-Ready Corpus Built by a Model-Based HTML Parser",
-      "author": "Ren Ma, Jiantao Qiu, Chao Xu, Pei Chu, Kaiwen Liu, Pengli Ren, Yuan Qu, Jiahui Peng, Linfeng Hou, Mengjie Liu, Lindong Lu, Wenchang Ning, Jia Yu, Rui Min, Jin Shi, Haojiong Chen, Peng Zhang, Wenjian Zhang, Qian Jiang, Zengjie Hu, Guoqiang Yang, Zhenxiang Li, Fukai Shang, Zhongying Tu, Wentao Zhang, Dahua Lin, Conghui He",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16416v1",
-      "title": "Classification of worldwide news articles by perceived quality, 2018-2024",
-      "author": "Connor McElroy, Thiago E. A. de Oliveira, Chris Brogly",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16423v1",
-      "title": "TOFA: Training-Free One-Shot Federated Adaptation for Vision-Language Models",
-      "author": "Li Zhang, Zhongxuan Han, XiaoHua Feng, Jiaming Zhang, Yuyuan Li, Linbo Jiang, Jianan Lin, Chaochao Chen",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16438v1",
-      "title": "ESGBench: A Benchmark for Explainable ESG Question Answering in Corporate Sustainability Reports",
-      "author": "Sherine George, Nithish Saji",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16467v1",
-      "title": "Anatomy of an Idiom: Tracing Non-Compositionality in Language Models",
-      "author": "Andrew Gomes",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16470v1",
-      "title": "Arctic-Extract Technical Report",
-      "author": "Mateusz Chiliński, Julita Ołtusek, Wojciech Jaśkowski",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16478v1",
-      "title": "Music Recommendation with Large Language Models: Challenges, Opportunities, and Evaluation",
-      "author": "Elena V. Epure, Yashar Deldjoo, Bruno Sguerra, Markus Schedl, Manuel Moussallam",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16518v1",
-      "title": "MiMo-Embodied: X-Embodied Foundation Model Technical Report",
-      "author": "Xiaoshuai Hao, Lei Zhou, Zhijian Huang, Zhiwen Hou, Yingbo Tang, Lingfeng Zhang, Guang Li, Zheng Lu, Shuhuai Ren, Xianhui Meng, Yuchen Zhang, Jing Wu, Jinghui Lu, Chenxu Dang, Jiayi Guan, Jianhua Wu, Zhiyi Hou, Hanbing Li, Shumeng Xia, Mingliang Zhou, Yinan Zheng, Zihao Yue, Shuhao Gu, Hao Tian, Yuannan Shen, Jianwei Cui, Wen Zhang, Shaoqing Xu, Bing Wang, Haiyang Sun, Zeyu Zhu, Yuncheng Jiang, Zibin Guo, Chuhong Gong, Chaofan Zhang, Wenbo Ding, Kun Ma, Guang Chen, Rui Cai, Diyun Xiang, Heng Qu, Fuli Luo, Hangjun Ye, Long Chen",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16528v1",
-      "title": "TurkColBERT: A Benchmark of Dense and Late-Interaction Models for Turkish Information Retrieval",
-      "author": "Özay Ezerceli, Mahmoud El Hussieni, Selva Taş, Reyhan Bayraktar, Fatma Betül Terzioğlu, Yusuf Çelebi, Yağız Asker",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16540v1",
-      "title": "Beyond Tokens in Language Models: Interpreting Activations through Text Genre Chunks",
-      "author": "Éloïse Benito-Rodriguez, Einar Urdshals, Jasmina Nasufi, Nicky Pochinkov",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16543v1",
-      "title": "The Oracle and The Prism: A Decoupled and Efficient Framework for Generative Recommendation Explanation",
-      "author": "Jiaheng Zhang, Daqiang Zhang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16544v1",
-      "title": "WER is Unaware: Assessing How ASR Errors Distort Clinical Understanding in Patient Facing Dialogue",
-      "author": "Zachary Ellis, Jared Joselowitz, Yash Deo, Yajie He, Anna Kalygina, Aisling Higham, Mana Rahimzadeh, Yan Jia, Ibrahim Habli, Ernest Lim",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16577v1",
-      "title": "Integrating Symbolic Natural Language Understanding and Language Models for Word Sense Disambiguation",
-      "author": "Kexin Zhao, Ken Forbus",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16590v1",
-      "title": "D-GARA: A Dynamic Benchmarking Framework for GUI Agent Robustness in Real-World Anomalies",
-      "author": "Sen Chen, Tong Zhao, Yi Bin, Fei Ma, Wenqi Shao, Zheng Wang",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16595v1",
-      "title": "TimeViper: A Hybrid Mamba-Transformer Vision-Language Model for Efficient Long Video Understanding",
-      "author": "Boshen Xu, Zihan Xiao, Jiaze Li, Jianzhong Ju, Zhenbo Luo, Jian Luan, Qin Jin",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16635v1",
-      "title": "SurvAgent: Hierarchical CoT-Enhanced Case Banking and Dichotomy-Based Multi-Agent System for Multimodal Survival Prediction",
-      "author": "Guolin Huang, Wenting Chen, Jiaqi Yang, Xinheng Lyu, Xiaoling Luo, Sen Yang, Xiaohan Xing, Linlin Shen",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16639v1",
-      "title": "Codec2Vec: Self-Supervised Speech Representation Learning Using Neural Speech Codecs",
-      "author": "Wei-Cheng Tseng, David Harwath",
-      "year": 2025
-    },
-    {
-      "doc_id": "2511.16654v1",
-      "title": "Comparison of Text-Based and Image-Based Retrieval in Multimodal Retrieval Augmented Generation Large Language Model Systems",
-      "author": "Elias Lumer, Alex Cardenas, Matt Melich, Myles Mason, Sara Dieter, Vamse Kumar Subbiah, Pradeep Honaganahalli Basavaraju, Roberto Hernandez",
-      "year": 2025
+      "doc_id": "2511.16671v1",
+      "title": "Thinking-while-Generating: Interleaving Textual Reasoning throughout Visual Generation",
+      "author": "Ziyu Guo, Renrui Zhang, Hongyu Li, Manyuan Zhang, Xinyan Chen, Sifan Wang, Yan Feng, Peng Pei, Pheng-Ann Heng",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16671v1"
     },
     {
       "doc_id": "2511.16664v1",
       "title": "Nemotron Elastic: Towards Efficient Many-in-One Reasoning LLMs",
       "author": "Ali Taghibakhshi, Sharath Turuvekere Sreenivas, Saurav Muralidharan, Ruisi Cai, Marcin Chochowski, Ameya Sunil Mahabaleshwarkar, Yoshi Suhara, Oluwatobi Olabiyi, Daniel Korzekwa, Mostofa Patwary, Mohammad Shoeybi, Jan Kautz, Bryan Catanzaro, Ashwath Aithal, Nima Tajbakhsh, Pavlo Molchanov",
-      "year": 2025
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16664v1"
     },
     {
-      "doc_id": "2511.16671v1",
-      "title": "Thinking-while-Generating: Interleaving Textual Reasoning throughout Visual Generation",
-      "author": "Ziyu Guo, Renrui Zhang, Hongyu Li, Manyuan Zhang, Xinyan Chen, Sifan Wang, Yan Feng, Peng Pei, Pheng-Ann Heng",
-      "year": 2025
+      "doc_id": "2511.16654v1",
+      "title": "Comparison of Text-Based and Image-Based Retrieval in Multimodal Retrieval Augmented Generation Large Language Model Systems",
+      "author": "Elias Lumer, Alex Cardenas, Matt Melich, Myles Mason, Sara Dieter, Vamse Kumar Subbiah, Pradeep Honaganahalli Basavaraju, Roberto Hernandez",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16654v1"
+    },
+    {
+      "doc_id": "2511.16639v1",
+      "title": "Codec2Vec: Self-Supervised Speech Representation Learning Using Neural Speech Codecs",
+      "author": "Wei-Cheng Tseng, David Harwath",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16639v1"
+    },
+    {
+      "doc_id": "2511.16635v1",
+      "title": "SurvAgent: Hierarchical CoT-Enhanced Case Banking and Dichotomy-Based Multi-Agent System for Multimodal Survival Prediction",
+      "author": "Guolin Huang, Wenting Chen, Jiaqi Yang, Xinheng Lyu, Xiaoling Luo, Sen Yang, Xiaohan Xing, Linlin Shen",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16635v1"
+    },
+    {
+      "doc_id": "2511.16595v1",
+      "title": "TimeViper: A Hybrid Mamba-Transformer Vision-Language Model for Efficient Long Video Understanding",
+      "author": "Boshen Xu, Zihan Xiao, Jiaze Li, Jianzhong Ju, Zhenbo Luo, Jian Luan, Qin Jin",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16595v1"
+    },
+    {
+      "doc_id": "2511.16590v1",
+      "title": "D-GARA: A Dynamic Benchmarking Framework for GUI Agent Robustness in Real-World Anomalies",
+      "author": "Sen Chen, Tong Zhao, Yi Bin, Fei Ma, Wenqi Shao, Zheng Wang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16590v1"
+    },
+    {
+      "doc_id": "2511.16577v1",
+      "title": "Integrating Symbolic Natural Language Understanding and Language Models for Word Sense Disambiguation",
+      "author": "Kexin Zhao, Ken Forbus",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16577v1"
+    },
+    {
+      "doc_id": "2511.16544v1",
+      "title": "WER is Unaware: Assessing How ASR Errors Distort Clinical Understanding in Patient Facing Dialogue",
+      "author": "Zachary Ellis, Jared Joselowitz, Yash Deo, Yajie He, Anna Kalygina, Aisling Higham, Mana Rahimzadeh, Yan Jia, Ibrahim Habli, Ernest Lim",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16544v1"
+    },
+    {
+      "doc_id": "2511.16543v1",
+      "title": "The Oracle and The Prism: A Decoupled and Efficient Framework for Generative Recommendation Explanation",
+      "author": "Jiaheng Zhang, Daqiang Zhang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16543v1"
+    },
+    {
+      "doc_id": "2511.16540v1",
+      "title": "Beyond Tokens in Language Models: Interpreting Activations through Text Genre Chunks",
+      "author": "Éloïse Benito-Rodriguez, Einar Urdshals, Jasmina Nasufi, Nicky Pochinkov",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16540v1"
+    },
+    {
+      "doc_id": "2511.16528v1",
+      "title": "TurkColBERT: A Benchmark of Dense and Late-Interaction Models for Turkish Information Retrieval",
+      "author": "Özay Ezerceli, Mahmoud El Hussieni, Selva Taş, Reyhan Bayraktar, Fatma Betül Terzioğlu, Yusuf Çelebi, Yağız Asker",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16528v1"
+    },
+    {
+      "doc_id": "2511.16518v1",
+      "title": "MiMo-Embodied: X-Embodied Foundation Model Technical Report",
+      "author": "Xiaoshuai Hao, Lei Zhou, Zhijian Huang, Zhiwen Hou, Yingbo Tang, Lingfeng Zhang, Guang Li, Zheng Lu, Shuhuai Ren, Xianhui Meng, Yuchen Zhang, Jing Wu, Jinghui Lu, Chenxu Dang, Jiayi Guan, Jianhua Wu, Zhiyi Hou, Hanbing Li, Shumeng Xia, Mingliang Zhou, Yinan Zheng, Zihao Yue, Shuhao Gu, Hao Tian, Yuannan Shen, Jianwei Cui, Wen Zhang, Shaoqing Xu, Bing Wang, Haiyang Sun, Zeyu Zhu, Yuncheng Jiang, Zibin Guo, Chuhong Gong, Chaofan Zhang, Wenbo Ding, Kun Ma, Guang Chen, Rui Cai, Diyun Xiang, Heng Qu, Fuli Luo, Hangjun Ye, Long Chen",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16518v1"
+    },
+    {
+      "doc_id": "2511.16478v1",
+      "title": "Music Recommendation with Large Language Models: Challenges, Opportunities, and Evaluation",
+      "author": "Elena V. Epure, Yashar Deldjoo, Bruno Sguerra, Markus Schedl, Manuel Moussallam",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16478v1"
+    },
+    {
+      "doc_id": "2511.16470v1",
+      "title": "Arctic-Extract Technical Report",
+      "author": "Mateusz Chiliński, Julita Ołtusek, Wojciech Jaśkowski",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16470v1"
+    },
+    {
+      "doc_id": "2511.16467v1",
+      "title": "Anatomy of an Idiom: Tracing Non-Compositionality in Language Models",
+      "author": "Andrew Gomes",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16467v1"
+    },
+    {
+      "doc_id": "2511.16438v1",
+      "title": "ESGBench: A Benchmark for Explainable ESG Question Answering in Corporate Sustainability Reports",
+      "author": "Sherine George, Nithish Saji",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16438v1"
+    },
+    {
+      "doc_id": "2511.16423v1",
+      "title": "TOFA: Training-Free One-Shot Federated Adaptation for Vision-Language Models",
+      "author": "Li Zhang, Zhongxuan Han, XiaoHua Feng, Jiaming Zhang, Yuyuan Li, Linbo Jiang, Jianan Lin, Chaochao Chen",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16423v1"
+    },
+    {
+      "doc_id": "2511.16416v1",
+      "title": "Classification of worldwide news articles by perceived quality, 2018-2024",
+      "author": "Connor McElroy, Thiago E. A. de Oliveira, Chris Brogly",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16416v1"
+    },
+    {
+      "doc_id": "2511.16397v1",
+      "title": "AICC: Parse HTML Finer, Make Models Better -- A 7.3T AI-Ready Corpus Built by a Model-Based HTML Parser",
+      "author": "Ren Ma, Jiantao Qiu, Chao Xu, Pei Chu, Kaiwen Liu, Pengli Ren, Yuan Qu, Jiahui Peng, Linfeng Hou, Mengjie Liu, Lindong Lu, Wenchang Ning, Jia Yu, Rui Min, Jin Shi, Haojiong Chen, Peng Zhang, Wenjian Zhang, Qian Jiang, Zengjie Hu, Guoqiang Yang, Zhenxiang Li, Fukai Shang, Zhongying Tu, Wentao Zhang, Dahua Lin, Conghui He",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16397v1"
+    },
+    {
+      "doc_id": "2511.16353v1",
+      "title": "Learning from Sufficient Rationales: Analysing the Relationship Between Explanation Faithfulness and Token-level Regularisation Strategies",
+      "author": "Jonathan Kamp, Lisa Beinborn, Antske Fokkens",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16353v1"
+    },
+    {
+      "doc_id": "2511.16345v1",
+      "title": "NLP Datasets for Idiom and Figurative Language Tasks",
+      "author": "Blake Matheny, Phuong Minh Nguyen, Minh Le Nguyen, Stephanie Reynolds",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16345v1"
+    },
+    {
+      "doc_id": "2511.16334v1",
+      "title": "OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe",
+      "author": "Kaichen Zhang, Keming Wu, Zuhao Yang, Kairui Hu, Bin Wang, Ziwei Liu, Xingxuan Li, Lidong Bing",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16334v1"
+    },
+    {
+      "doc_id": "2511.16331v1",
+      "title": "Incorporating Self-Rewriting into Large Language Model Reasoning Reinforcement",
+      "author": "Jiashu Yao, Heyan Huang, Shuang Zeng, Chuwei Luo, WangJie You, Jie Tang, Qingsong Liu, Yuhang Guo, Yangyang Kang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16331v1"
+    },
+    {
+      "doc_id": "2511.16324v1",
+      "title": "SDA: Steering-Driven Distribution Alignment for Open LLMs without Fine-Tuning",
+      "author": "Wei Xia, Zhi-Hong Deng",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16324v1"
+    },
+    {
+      "doc_id": "2511.16275v1",
+      "title": "SeSE: A Structural Information-Guided Uncertainty Quantification Framework for Hallucination Detection in LLMs",
+      "author": "Xingtao Zhao, Hao Peng, Dingli Su, Xianghua Zeng, Chunyang Liu, Jinzhi Liao, Philip S. Yu",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16275v1"
+    },
+    {
+      "doc_id": "2511.16221v1",
+      "title": "Can MLLMs Read the Room? A Multimodal Benchmark for Assessing Deception in Multi-Party Social Interactions",
+      "author": "Caixin Kang, Yifei Huang, Liangyang Ouyang, Mingfang Zhang, Ruicong Liu, Yoichi Sato",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16221v1"
+    },
+    {
+      "doc_id": "2511.16209v1",
+      "title": "PSM: Prompt Sensitivity Minimization via LLM-Guided Black-Box Optimization",
+      "author": "Huseein Jawad, Nicolas Brunel",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16209v1"
+    },
+    {
+      "doc_id": "2511.16198v1",
+      "title": "SemanticCite: Citation Verification with AI-Powered Full-Text Analysis and Evidence-Based Reasoning",
+      "author": "Sebastian Haan",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16198v1"
+    },
+    {
+      "doc_id": "2511.16147v1",
+      "title": "TS-PEFT: Token-Selective Parameter-Efficient Fine-Tuning with Learnable Threshold Gating",
+      "author": "Dabiao Ma, Ziming Dai, Zhimin Xin, Shu Wang, Ye Wang, Haojun Fei",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16147v1"
+    },
+    {
+      "doc_id": "2511.16122v1",
+      "title": "ELPO: Ensemble Learning Based Prompt Optimization for Large Language Models",
+      "author": "Qing Zhang, Bing Xu, Xudong Zhang, Yifan Shi, Yang Li, Chen Zhang, Yik Chung Wu, Ngai Wong, Yijie Chen, Hong Dai, Xiansen Chen, Mian Zhang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16122v1"
+    },
+    {
+      "doc_id": "2511.16072v1",
+      "title": "Early science acceleration experiments with GPT-5",
+      "author": "Sébastien Bubeck, Christian Coester, Ronen Eldan, Timothy Gowers, Yin Tat Lee, Alexandru Lupsasca, Mehtaab Sawhney, Robert Scherrer, Mark Sellke, Brian K. Spears, Derya Unutmaz, Kevin Weil, Steven Yin, Nikita Zhivotovskiy",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16072v1"
+    },
+    {
+      "doc_id": "2511.16054v1",
+      "title": "Learning Tractable Distributions Of Language Model Continuations",
+      "author": "Gwen Yidou-Weng, Ian Li, Anji Liu, Oliver Broadrick, Guy Van den Broeck, Benjie Wang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16054v1"
+    },
+    {
+      "doc_id": "2511.16035v1",
+      "title": "Liars' Bench: Evaluating Lie Detectors for Language Models",
+      "author": "Kieron Kretschmar, Walter Laurito, Sharan Maiya, Samuel Marks",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16035v1"
+    },
+    {
+      "doc_id": "2511.16018v1",
+      "title": "SpellForger: Prompting Custom Spell Properties In-Game using BERT supervised-trained model",
+      "author": "Emanuel C. Silva, Emily S. M. Salum, Gabriel M. Arantes, Matheus P. Pereira, Vinicius F. Oliveira, Alessandro L. Bicho",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.16018v1"
+    },
+    {
+      "doc_id": "2511.15996v1",
+      "title": "QueryGym: A Toolkit for Reproducible LLM-Based Query Reformulation",
+      "author": "Amin Bigdeli, Radin Hamidi Rad, Mert Incesu, Negar Arabzadeh, Charles L. A. Clarke, Ebrahim Bagheri",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15996v1"
+    },
+    {
+      "doc_id": "2511.15994v1",
+      "title": "CARE-RAG - Clinical Assessment and Reasoning in RAG",
+      "author": "Deepthi Potluri, Aby Mammen Mathew, Jeffrey B DeWitt, Alexander L. Rasgon, Yide Hao, Junyuan Hong, Ying Ding",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15994v1"
+    },
+    {
+      "doc_id": "2511.15976v1",
+      "title": "TOD-ProcBench: Benchmarking Complex Instruction-Following in Task-Oriented Dialogues",
+      "author": "Sarik Ghazarian, Abhinav Gullapalli, Swair Shah, Anurag Beniwal, Nanyun Peng, Narayanan Sadagopan, Zhou Yu",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15976v1"
+    },
+    {
+      "doc_id": "2511.15958v1",
+      "title": "JudgeBoard: Benchmarking and Enhancing Small Language Models for Reasoning Evaluation",
+      "author": "Zhenyu Bi, Gaurav Srivastava, Yang Li, Meng Lu, Swastik Roy, Morteza Ziyadi, Xuan Wang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15958v1"
+    },
+    {
+      "doc_id": "2511.15915v1",
+      "title": "AccelOpt: A Self-Improving LLM Agentic System for AI Accelerator Kernel Optimization",
+      "author": "Genghan Zhang, Shaowei Zhu, Anjiang Wei, Zhenyu Song, Allen Nie, Zhen Jia, Nandita Vijaykumar, Yida Wang, Kunle Olukotun",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15915v1"
+    },
+    {
+      "doc_id": "2511.15887v1",
+      "title": "Mind the Motions: Benchmarking Theory-of-Mind in Everyday Body Language",
+      "author": "Seungbeen Lee, Jinhong Jeong, Donghyun Kim, Yejin Son, Youngjae Yu",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15887v1"
+    },
+    {
+      "doc_id": "2511.15886v1",
+      "title": "What Really Counts? Examining Step and Token Level Attribution in Multilingual CoT Reasoning",
+      "author": "Jeremias Ferrao, Ezgi Basar, Khondoker Ittehadul Islam, Mahrokh Hassani",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15886v1"
+    },
+    {
+      "doc_id": "2511.15862v1",
+      "title": "The Subtle Art of Defection: Understanding Uncooperative Behaviors in LLM based Multi-Agent Systems",
+      "author": "Devang Kulshreshtha, Wanyu Du, Raghav Jain, Srikanth Doss, Hang Su, Sandesh Swamy, Yanjun Qi",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15862v1"
+    },
+    {
+      "doc_id": "2511.15848v1",
+      "title": "Step-Audio-R1 Technical Report",
+      "author": "Fei Tian, Xiangyu Tony Zhang, Yuxin Zhang, Haoyang Zhang, Yuxin Li, Daijiao Liu, Yayue Deng, Donghang Wu, Jun Chen, Liang Zhao, Chengyuan Yao, Hexin Liu, Eng Siong Chng, Xuerui Yang, Xiangyu Zhang, Daxin Jiang, Gang Yu",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15848v1"
+    },
+    {
+      "doc_id": "2511.15709v1",
+      "title": "Tokenisation over Bounded Alphabets is Hard",
+      "author": "Violeta Kastreva, Philip Whittington, Dennis Komm, Tiago Pimentel",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15709v1"
+    },
+    {
+      "doc_id": "2511.15703v1",
+      "title": "Think Visually, Reason Textually: Vision-Language Synergy in ARC",
+      "author": "Beichen Zhang, Yuhang Zang, Xiaoyi Dong, Yuhang Cao, Haodong Duan, Dahua Lin, Jiaqi Wang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15703v1"
+    },
+    {
+      "doc_id": "2511.15690v1",
+      "title": "MoDES: Accelerating Mixture-of-Experts Multimodal Large Language Models via Dynamic Expert Skipping",
+      "author": "Yushi Huang, Zining Wang, Zhihang Yuan, Yifu Ding, Ruihao Gong, Jinyang Guo, Xianglong Liu, Jun Zhang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15690v1"
+    },
+    {
+      "doc_id": "2511.15661v2",
+      "title": "VisPlay: Self-Evolving Vision-Language Models from Images",
+      "author": "Yicheng He, Chengsong Huang, Zongxia Li, Jiaxin Huang, Yonghui Yang",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15661v2"
+    },
+    {
+      "doc_id": "2511.15613v1",
+      "title": "When to Think and When to Look: Uncertainty-Guided Lookback",
+      "author": "Jing Bi, Filippos Bellos, Junjia Guo, Yayuan Li, Chao Huang, Yunlong, Tang, Luchuan Song, Susan Liang, Zhongfei, Zhang, Jason J. Corso, Chenliang Xu",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15613v1"
+    },
+    {
+      "doc_id": "2511.15605v1",
+      "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+      "author": "Senyu Fei, Siyin Wang, Li Ji, Ao Li, Shiduo Zhang, Liming Liu, Jinlong Hou, Jingjing Gong, Xianzhong Zhao, Xipeng Qiu",
+      "year": 2025,
+      "pdf_link": "https://arxiv.org/pdf/2511.15605v1"
     }
   ]
 }
