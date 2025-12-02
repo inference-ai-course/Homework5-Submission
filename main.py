@@ -1,6 +1,6 @@
 """
 FastAPI service for RAG-based paper search.
-Provides a /search endpoint that accepts queries and returns relevant passages.
+Provides /search and /hybrid_search endpoints for semantic and hybrid retrieval.
 """
 
 from fastapi import FastAPI, HTTPException, Query
@@ -12,6 +12,7 @@ import faiss
 from sentence_transformers import SentenceTransformer
 from pathlib import Path
 from pydantic import BaseModel
+from hybrid_search import HybridSearchEngine
 
 # Configuration
 INDEX_DIR = Path("data/index")
@@ -20,8 +21,8 @@ EMBEDDING_MODEL = 'all-MiniLM-L6-v2'
 # Initialize FastAPI app
 app = FastAPI(
     title="arXiv Paper RAG Search",
-    description="Retrieval-Augmented Generation system for arXiv cs.CL papers",
-    version="1.0.0"
+    description="Retrieval-Augmented Generation system for arXiv cs.CL papers with hybrid search",
+    version="2.0.0"
 )
 
 # Global variables for model and data
@@ -29,6 +30,7 @@ model = None
 faiss_index = None
 chunks = None
 metadata = None
+hybrid_engine = None
 
 
 class SearchResult(BaseModel):
@@ -49,7 +51,7 @@ class SearchResponse(BaseModel):
 
 def load_resources():
     """Load the FAISS index, chunks, and metadata."""
-    global model, faiss_index, chunks, metadata
+    global model, faiss_index, chunks, metadata, hybrid_engine
 
     print("Loading resources...")
 
@@ -80,6 +82,14 @@ def load_resources():
         metadata = json.load(f)
     print(f"Loaded metadata for {len(metadata)} chunks")
 
+    # Load hybrid search engine
+    try:
+        hybrid_engine = HybridSearchEngine()
+        print("Loaded hybrid search engine")
+    except Exception as e:
+        print(f"Warning: Could not load hybrid search engine: {e}")
+        hybrid_engine = None
+
     print("Resources loaded successfully!")
 
 
@@ -98,9 +108,10 @@ async def root():
     """Root endpoint with API information."""
     return {
         "message": "arXiv Paper RAG Search API",
-        "version": "1.0.0",
+        "version": "2.0.0",
         "endpoints": {
-            "/search": "Search for relevant paper passages",
+            "/search": "Search for relevant paper passages (vector-only)",
+            "/hybrid_search": "Hybrid search combining vector and keyword search",
             "/health": "Health check endpoint",
             "/stats": "Get statistics about the indexed data"
         }
@@ -229,6 +240,65 @@ async def get_paper_chunks(paper_id: str):
         "total_chunks": len(paper_chunks),
         "chunks": paper_chunks
     }
+
+
+@app.get("/hybrid_search")
+async def hybrid_search(
+    query: str = Query(..., description="Search query", min_length=1),
+    k: int = Query(3, description="Number of results to return", ge=1, le=20),
+    method: str = Query("rrf", description="Fusion method: 'rrf' or 'weighted'"),
+    alpha: float = Query(0.5, description="Weight for vector search (0-1) when using weighted fusion", ge=0.0, le=1.0)
+):
+    """
+    Hybrid search endpoint combining vector and keyword search.
+
+    Args:
+        query: The search query string
+        k: Number of top results to return (default: 3, max: 20)
+        method: Fusion method - 'rrf' (reciprocal rank fusion) or 'weighted'
+        alpha: Weight for vector search when using weighted fusion (default: 0.5)
+
+    Returns:
+        JSON with query and list of matching passages from hybrid search
+    """
+    # Check if hybrid engine is loaded
+    if hybrid_engine is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Hybrid search service not ready. Please check server logs."
+        )
+
+    try:
+        # Perform hybrid search
+        results = hybrid_engine.hybrid_search(
+            query=query,
+            k=k,
+            method=method,
+            alpha=alpha
+        )
+
+        # Format results for API response
+        formatted_results = []
+        for result in results:
+            formatted_results.append({
+                "chunk_text": result.chunk_text,
+                "paper_id": result.paper_id,
+                "paper_title": result.paper_title,
+                "chunk_index": result.chunk_index,
+                "score": result.score,
+                "rank": result.rank
+            })
+
+        return {
+            "query": query,
+            "method": method,
+            "alpha": alpha if method == "weighted" else None,
+            "num_results": len(formatted_results),
+            "results": formatted_results
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Hybrid search error: {str(e)}")
 
 
 if __name__ == "__main__":
