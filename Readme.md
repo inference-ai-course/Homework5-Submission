@@ -9,13 +9,6 @@ An end-to-end system for building an academic Q&A assistant using RAG (Retrieval
 - Python 3.10+
 - CUDA support
 
-### GPU Server Connection
-```bash
-ssh jovyan@64.247.206.5 -p 31582
-```
-
-**Jupyter Lab:** [Open Jupyter](https://jupyter-labs-8888-1765158731189787117.cluster3.service-inference.ai?token=9z784526Ze3lSogV)
-
 ## 📋 Pipeline
 
 1. **Data Collection** - Scrape papers from arXiv
