@@ -12,16 +12,15 @@ Default models:
 import os
 import requests
 from typing import Dict, List, Optional, Any
-from google import genai
-from google.genai import types
+
 
 class LLMClient:
     """Unified client for interacting with LLMs (Claude or Ollama)"""
 
     # Default model names
-    DEFAULT_CLAUDE_MODEL = "claude-haiku-4-5-20251001"#"claude-sonnet-4-6" #  claude-haiku-4-5-20251001
-    DEFAULT_OLLAMA_MODEL = "qwen3:8b"#llama3.2:latest"#qwen3.5:27b
-    DEFAULT_GEMINI_MODEL = "gemini-3-flash-preview" # Path D gemini-2.5-flash   
+    DEFAULT_CLAUDE_MODEL = "claude-sonnet-4-6"
+    DEFAULT_OLLAMA_MODEL = "qwen3.5:27b"
+
     def __init__(self, path: str = "A"):
         """
         Initialize the LLM client based on chosen path.
@@ -32,14 +31,11 @@ class LLMClient:
         self.path = path
         self.claude_client = None
         self.default_model = None
-        self.gemini_model = None
 
         if path in ["A", "C"]:
             self._init_claude()
         if path in ["B", "C"]:
             self._init_ollama()
-        if path == "D":
-            self._init_gemini()
 
     def _init_claude(self):
         """Initialize Claude API client"""
@@ -58,37 +54,6 @@ class LLMClient:
         except Exception as e:
             print(f"❌ Failed to initialize Claude: {e}")
             raise
-    def _init_gemini(self):
-        """Initialize Google Gemini client"""
-       
-        try:
-            api_key = os.getenv('GOOGLE_API_KEY')
-            if not api_key:
-                print("⚠ GOOGLE_API_KEY not found in environment.")
-                return
-
-            # NEW 2026 PATTERN: Initialize a Client object
-            # The key is passed directly to the Client constructor
-            self.gemini_client = genai.Client(api_key=api_key)
-            
-            # We store the model name string, not the model object itself
-            self.default_model = self.DEFAULT_GEMINI_MODEL 
-            
-            print(f"✓ Gemini client initialized ({self.DEFAULT_GEMINI_MODEL})")
-        except Exception as e:
-            print(f"❌ Failed to initialize Gemini: {e}")
-        # try:
-        #     api_key = os.getenv('GOOGLE_API_KEY')
-        #     if not api_key:
-        #         print("⚠ GOOGLE_API_KEY not found in environment.")
-        #         return
-
-        #     genai.configure(api_key=api_key)
-        #     self.gemini_model = genai.GenerativeModel(self.DEFAULT_GEMINI_MODEL)
-        #     self.default_model = self.DEFAULT_GEMINI_MODEL
-        #     print(f"✓ Gemini client initialized ({self.DEFAULT_GEMINI_MODEL})")
-        # except Exception as e:
-        #     print(f"❌ Failed to initialize Gemini: {e}")
 
     def _init_ollama(self):
         """Initialize Ollama client"""
@@ -141,58 +106,24 @@ class LLMClient:
         Returns:
             Dictionary with 'content', 'model', 'usage', 'stop_reason' keys
         """
-        # use_claude_backend = False
-        # if self.path == "A":
-        #     use_claude_backend = True
-        # elif self.path == "B":
-        #     use_claude_backend = False
-        # elif self.path == "C":
-        #     use_claude_backend = use_claude if use_claude is not None else True
+        use_claude_backend = False
+        if self.path == "A":
+            use_claude_backend = True
+        elif self.path == "B":
+            use_claude_backend = False
+        elif self.path == "C":
+            use_claude_backend = use_claude if use_claude is not None else True
 
-        # if model is None:
-        #     if use_claude_backend:
-        #         model = self.DEFAULT_CLAUDE_MODEL
-        #     else:
-        #         model = self.default_model or self.DEFAULT_OLLAMA_MODEL
-
-        # if use_claude_backend:
-        #     return self._generate_claude(prompt, system, model, temperature, max_tokens)
-        
-        # if self.path == "D":
-        #     return self._generate_gemini(prompt, system, model, temperature, max_tokens)
-        # else:
-        #     return self._generate_ollama(prompt, system, model, temperature, max_tokens)
-        
-        # # fallback to existing logic
-        # return super().generate(prompt, **kwargs) 
-        # 1. Determine which BACKEND to use
-        selected_path = self.path
-        
-        # Handle Hybrid (Path C) Logic
-        if self.path == "C":
-            selected_path = "A" if (use_claude or use_claude is None) else "B"
-
-        # 2. Set the Model if not overridden
         if model is None:
-            if selected_path == "A":
+            if use_claude_backend:
                 model = self.DEFAULT_CLAUDE_MODEL
-            elif selected_path == "B":
+            else:
                 model = self.default_model or self.DEFAULT_OLLAMA_MODEL
-            elif selected_path == "D":
-                model = self.DEFAULT_GEMINI_MODEL
 
-        # 3. ROUTING (The Traffic Controller)
-        if selected_path == "A":
+        if use_claude_backend:
             return self._generate_claude(prompt, system, model, temperature, max_tokens)
-        
-        elif selected_path == "B":
-            return self._generate_ollama(prompt, system, model, temperature, max_tokens)
-            
-        elif selected_path == "D":
-            return self._generate_gemini(prompt, system, model, temperature, max_tokens)
-        
         else:
-            return {"error": f"Invalid path configuration: {self.path}"}
+            return self._generate_ollama(prompt, system, model, temperature, max_tokens)
 
     def generate_with_thinking(
         self,
@@ -278,55 +209,6 @@ class LLMClient:
             }
         except Exception as e:
             return {"error": str(e), "model": model}
-    # def _generate_gemini(self, prompt, system, model, temperature, max_tokens):
-    #     try:
-    #     # The new SDK 2026 pattern
-    #         response = self.gemini_client.models.generate_content(
-    #             model=model or "gemini-2.5-flash",
-    #             contents=prompt,
-    #             config={
-    #                 "system_instruction": system,
-    #                 "temperature": temperature,
-    #                 "max_output_tokens": max_tokens
-    #             }
-    #         )
-    #         return {
-    #             "content": response.text,
-    #             "model": model or "gemini-2.5-flash",
-    #             "usage": {"total_tokens": response.usage_metadata.total_token_count}
-    #         }
-    #     except Exception as e:
-    #         return {"error": str(e)}
-    def _generate_gemini(self, prompt, system, model, temperature, max_tokens):
-        print("⚡ Generating with Gemini...")
-        try:
-            response = self.gemini_client.models.generate_content(
-                model=model,
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=system,
-                    temperature=temperature,
-                    max_output_tokens=max_tokens
-                )
-            )
-
-            stop_reason = None
-            if response.candidates:
-                stop_reason = response.candidates[0].finish_reason
-
-            return {
-                "content": response.text,
-                "model": model or self.default_model,
-                "stop_reason": str(stop_reason),
-                "usage": {
-                    "input_tokens": response.usage_metadata.prompt_token_count,
-                    "output_tokens": response.usage_metadata.candidates_token_count,
-                    "total_tokens": response.usage_metadata.total_token_count
-                }
-            }
-
-        except Exception as e:
-            return {"error": str(e)}
 
     def _generate_ollama(self, prompt, system, model, temperature, max_tokens):
         """Generate response using Ollama (chat API)"""
@@ -401,17 +283,3 @@ class LLMClient:
                 pass
 
         return models
-
-
-    
-
-    # def generate(self, prompt: str, **kwargs) -> Dict[str, Any]:
-    #     # ... (keep your existing Path A/B/C logic) ...
-        
-    #     if self.path == "D":
-    #         return self._generate_gemini(prompt, **kwargs)
-        
-    #     # fallback to existing logic
-    #     return super().generate(prompt, **kwargs) 
-
-    

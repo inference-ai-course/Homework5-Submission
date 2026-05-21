@@ -167,5 +167,5 @@ def show_dataset_stats(records: list[dict], text_field: str = "text") -> dict:
     print(f"  avg chars   : {stats['avg_chars']}")
     print(f"  min chars   : {stats['min_chars']}")
     print(f"  max chars   : {stats['max_chars']}")
-    print(f"  sample entry: {json.dumps(stats['sample'])[:200]}")
+    print(f"  sample entry: {json.dumps(stats['sample'],indent=2)[:200]}")
     return stats

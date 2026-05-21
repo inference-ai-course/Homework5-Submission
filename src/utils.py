@@ -22,9 +22,9 @@ def _resolve_outputs_dir(output_dir: Optional[str]) -> str:
     cwd = os.getcwd()
     if os.path.basename(cwd) == "notebooks" and os.path.isdir(os.path.join(cwd, "..", "outputs")):
         return os.path.normpath(os.path.join(cwd, "..", "outputs"))
-    if os.path.basename(cwd) == "notebooks":
-        # notebooks/ exists but ../outputs doesn't — create it at the project level
-        return os.path.normpath(os.path.join(cwd, "..", "outputs"))
+    # if os.path.basename(cwd) == "notebooks":
+    #     # notebooks/ exists but ../outputs doesn't — create it at the project level
+    #     return os.path.normpath(os.path.join(cwd, "..", "outputs"))
     return "outputs"
 
 

@@ -20,6 +20,7 @@ class SFTRunner:
     ):
         self.backend = backend.lower()
         self.base_model = base_model
+      
         self._model = None
         self._tokenizer = None
         self._adapter_path: str | None = None
@@ -35,7 +36,7 @@ class SFTRunner:
         learning_rate: float = 1e-4,
         per_device_batch_size: int = 2,
         gradient_accumulation_steps: int = 4,
-        max_seq_length: int = 512,
+        # max_seq_length: int = 512,
         use_4bit: bool = True,
         warmup_ratio: float = 0.1,
         weight_decay: float = 0.01,
@@ -54,7 +55,7 @@ class SFTRunner:
                 max_steps=max_steps,
                 learning_rate=learning_rate,
                 per_device_batch_size=per_device_batch_size,
-                max_seq_length=max_seq_length,
+                # max_seq_length=max_seq_length,
             )
         else:
             return self._train_hf(
@@ -66,7 +67,7 @@ class SFTRunner:
                 learning_rate=learning_rate,
                 per_device_batch_size=per_device_batch_size,
                 gradient_accumulation_steps=gradient_accumulation_steps,
-                max_seq_length=max_seq_length,
+                # max_seq_length=max_seq_length,
                 use_4bit=use_4bit,
                 warmup_ratio=warmup_ratio,
                 weight_decay=weight_decay,
@@ -82,7 +83,7 @@ class SFTRunner:
         learning_rate: float = 3e-4,
         per_device_batch_size: int = 2,
         gradient_accumulation_steps: int = 4,
-        max_seq_length: int = 512,
+        # max_seq_length: int = 512,
         use_4bit: bool = True,
         warmup_ratio: float = 0.1,
         weight_decay: float = 0.01,
@@ -138,6 +139,7 @@ class SFTRunner:
             trust_remote_code=True,
         )
         tokenizer = AutoTokenizer.from_pretrained(self.base_model, trust_remote_code=True)
+    
         if tokenizer.pad_token is None:
             tokenizer.pad_token = tokenizer.eos_token
         print("[sft_trainer] Base model and tokenizer loaded")
@@ -172,7 +174,7 @@ class SFTRunner:
             learning_rate=learning_rate,
             warmup_ratio=warmup_ratio,
             weight_decay=weight_decay,
-            max_seq_length=max_seq_length,
+            # max_seq_length=max_seq_length,
             logging_steps=10,
             save_strategy="epoch",
             fp16=not is_mac and not use_4bit,
@@ -180,12 +182,14 @@ class SFTRunner:
             report_to="none",
         )
 
+     
+
         print("[sft_trainer] Starting SFTTrainer training loop...")
         trainer = SFTTrainer(
             model=model,
             args=sft_config,
             train_dataset=dataset,
-            tokenizer=tokenizer,
+            # tokenizer=tokenizer,
         )
 
         train_result = trainer.train()
@@ -198,7 +202,7 @@ class SFTRunner:
         print(f"[sft_trainer] Adapter saved to {output_dir}")
 
         self._model = model
-        self._tokenizer = tokenizer
+        # self._tokenizer = tokenizer
         self._adapter_path = output_dir
 
         return {"train_loss": float(train_loss), "steps": int(steps), "adapter_path": output_dir}
@@ -230,7 +234,7 @@ class SFTRunner:
         max_steps: int = -1,
         learning_rate: float = 1e-4,
         per_device_batch_size: int = 2,
-        max_seq_length: int = 512,
+        # max_seq_length: int = 512,
     ) -> dict:
         """MLX path: tries Python API first, falls back to mlx_lm.lora CLI via subprocess."""
         print("[sft_trainer] MLX backend selected")
@@ -286,7 +290,7 @@ class SFTRunner:
             "--iters", str(iters),
             "--batch-size", str(per_device_batch_size),
             "--learning-rate", str(learning_rate),
-            "--max-seq-length", str(max_seq_length),
+            # "--max-seq-length", str(max_seq_length),
             "--val-batches", "0",
             "--mask-prompt",
         ]

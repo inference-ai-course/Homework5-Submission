@@ -31,7 +31,7 @@ class PrefRunner:
         learning_rate: float = 1e-5,
         per_device_batch_size: int = 1,
         reward_funcs: list | None = None,
-        use_4bit: bool = True,
+        use_4bit: bool = False,
     ) -> dict:
         """Run preference tuning. Returns metrics dict."""
         Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -117,6 +117,17 @@ class PrefRunner:
             f"adapter dir (adapter_config.json with 'model' key)."
         )
 
+    @staticmethod
+    def _has_gpu() -> bool:
+        try:
+            import torch
+        except ImportError:
+            return False
+
+        return torch.cuda.is_available() or (
+            hasattr(torch.backends, "mps") and torch.backends.mps.is_available()
+        )
+
     def _load_base_model(self, use_4bit: bool):
         """Load base model and tokenizer with optional 4-bit quantization."""
         try:
@@ -131,9 +142,13 @@ class PrefRunner:
 
         base_model, peft_adapter_path = self._resolve_model_path()
 
+        is_gpu_available = self._has_gpu()
         is_mac = sys.platform == "darwin"
         if use_4bit and is_mac:
             print("[preference_tuner] Mac detected: disabling 4-bit quantization")
+            use_4bit = False
+        if use_4bit and not is_gpu_available:
+            print("[preference_tuner] No GPU/MPS detected: disabling 4-bit quantization")
             use_4bit = False
 
         bnb_config = None
@@ -167,6 +182,10 @@ class PrefRunner:
                 from peft import PeftModel
                 print(f"[preference_tuner] Applying PEFT adapter: {peft_adapter_path}")
                 model = PeftModel.from_pretrained(model, peft_adapter_path, is_trainable=True)
+                # Merge adapter weights into base model
+
+                print("[preference_tuner] Merging adapter into base model...")
+                model = model.merge_and_unload()
             except ImportError:
                 print("[preference_tuner] WARNING: peft not installed; continuing from base only.")
 
@@ -196,6 +215,8 @@ class PrefRunner:
             raise ImportError("Install peft: pip install peft")
 
         model, tokenizer = self._load_base_model(use_4bit)
+        use_cpu = not self._has_gpu()
+        # use_cpu=True
 
         lora_config = LoraConfig(
             task_type=TaskType.CAUSAL_LM,
@@ -215,6 +236,8 @@ class PrefRunner:
             logging_steps=5,
             beta=0.1,
             report_to="none",
+            use_cpu=use_cpu,
+            bf16=False,
         )
 
         print("[preference_tuner] Starting DPO training...")
@@ -256,6 +279,8 @@ class PrefRunner:
             raise ImportError("Install peft: pip install peft")
 
         model, tokenizer = self._load_base_model(use_4bit)
+        use_cpu = not self._has_gpu()
+        # use_cpu = True
 
         lora_config = LoraConfig(
             task_type=TaskType.CAUSAL_LM,
@@ -274,6 +299,8 @@ class PrefRunner:
             learning_rate=learning_rate,
             logging_steps=5,
             report_to="none",
+            use_cpu=use_cpu,
+            bf16=False,
         )
 
         print("[preference_tuner] Starting KTO training...")
@@ -320,6 +347,8 @@ class PrefRunner:
             reward_funcs = [make_gsm8k_reward_fn()]
 
         model, tokenizer = self._load_base_model(use_4bit)
+        use_cpu = not self._has_gpu()
+        # use_cpu = True
 
         lora_config = LoraConfig(
             task_type=TaskType.CAUSAL_LM,
@@ -338,6 +367,8 @@ class PrefRunner:
             learning_rate=learning_rate,
             logging_steps=5,
             report_to="none",
+            use_cpu=use_cpu,
+            bf16=False,
         )
 
         print("[preference_tuner] Starting GRPO training...")
